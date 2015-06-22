@@ -144,8 +144,8 @@ h1, h2, h3, h4, h5, h6 {
   position: fixed;
   top: 0;
   bottom: 0;
-  left: -14rem;
-  width: 14rem;
+  left: -24rem;
+  width: 24rem;
   visibility: hidden;
   overflow-y: auto;
   font-family: "PT Sans", Helvetica, Arial, sans-serif;
@@ -183,6 +183,19 @@ h1, h2, h3, h4, h5, h6 {
 .sidebar-nav-item.active,
 a.sidebar-nav-item:hover,
 a.sidebar-nav-item:focus {
+  text-decoration: none;
+  background-color: rgba(255,255,255,.1);
+  border-color: transparent;
+}
+
+.sidebar-section {
+  display: block;
+/*  padding: .5rem 1rem;*/
+  border-top: 1px solid rgba(255,255,255,.1);
+}
+.sidebar-section.active,
+a.sidebar-section:hover,
+a.sidebar-section:focus {
   text-decoration: none;
   background-color: rgba(255,255,255,.1);
   border-color: transparent;
@@ -293,7 +306,7 @@ a.sidebar-nav-item:focus {
   visibility: visible;
 }
 #sidebar-checkbox:checked ~ .wrap {
-  left: 14rem;
+  left: 24rem;
 }
 
 
@@ -424,7 +437,7 @@ a.pagination-item:hover {
 
 .layout-reverse .sidebar {
   left: auto;
-  right: -14rem;
+  right: -24rem;
 }
 .layout-reverse .sidebar-toggle {
   left: auto;
@@ -437,7 +450,7 @@ a.pagination-item:hover {
 }
 .layout-reverse #sidebar-checkbox:checked ~ .wrap {
   left: auto;
-  right: 14rem;
+  right: 24rem;
 }
 
 

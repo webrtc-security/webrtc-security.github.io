@@ -11,6 +11,28 @@
   <nav class="sidebar-nav">
     <a class="sidebar-nav-item{% if page.title == "Home" %} active{% endif %}" href="/">Home</a>
 
+    <div class="sidebar-item">
+        <div class="sidebar-section">1. Introduction (Report aims)<br></div>
+        <div class="sidebar-section">2. Overview of WebRTC Architecture<br></div>
+        <div class="sidebar-section">  2.1. Underlying Technologies<br></div>
+        <div class="sidebar-section">    * 2.2. Flow of a typical WebRTC Session (Unnecessary?)<br></div>
+        <div class="sidebar-section">3. Browser-based Security Considerations<br></div>
+        <div class="sidebar-section">4. WebRTC Security Considerations<br></div>
+        <div class="sidebar-section">    * 4.1. Installation and Updates<br></div>
+        <div class="sidebar-section">    * 4.2. Access to Media/Local resources<br></div>
+        <div class="sidebar-section">    * 4.3. Media Encryption & Communication Security<br></div>
+        <div class="sidebar-section">    * 4.4. Web-Based Peer Authentication / Identity Management<br></div>
+        <div class="sidebar-section">    * 4.5. IP Location Privacy<br></div>
+        <div class="sidebar-section">    * 4.6. Signalling Layer<br></div>
+        <div class="sidebar-section">5. Comparison with competing/similar technologies<br></div>
+        <div class="sidebar-section">6. Good (secure) coding conventions for WebRTC applications.<br></div>
+        <div class="sidebar-section">* 6.1 Case Studies?<br></div>
+        <div class="sidebar-section">7. Conclusion<br></div>
+        <div class="sidebar-section">8. Bibliography<br></div>
+
+    
+    </div>
+      
     {% comment %}
       The code below dynamically generates a sidebar nav of pages with
       `layout: page` in the front-matter. See readme for usage.
@@ -25,7 +47,7 @@
       {% endif %}
     {% endfor %}
 
-    <a class="sidebar-nav-item" href="{{ site.github.repo }}/archive/v{{ site.version }}.zip">Download</a>
+<!--    <a class="sidebar-nav-item" href="{{ site.github.repo }}/archive/v{{ site.version }}.zip">Download</a>-->
     <a class="sidebar-nav-item" href="{{ site.github.repo }}">GitHub project</a>
     <span class="sidebar-nav-item">Currently v{{ site.version }}</span>
   </nav>

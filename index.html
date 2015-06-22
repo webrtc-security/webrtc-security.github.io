@@ -11,13 +11,13 @@ layout: default
       </a>
     </h1>
 
-    <span class="post-date">{{ post.date | date_to_string }}</span>
-
     {{ post.content }}
   </div>
   {% endfor %}
 </div>
 
+
+<!--
 <div class="pagination">
   {% if paginator.next_page %}
     <a class="pagination-item older" href="/page{{paginator.next_page}}">Older</a>
@@ -33,4 +33,4 @@ layout: default
   {% else %}
     <span class="pagination-item newer">Newer</span>
   {% endif %}
-</div>
+</div>-->
