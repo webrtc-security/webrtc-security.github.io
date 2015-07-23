@@ -77,12 +77,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 @media (min-width: 38rem) {
   .container {
-    max-width: 32rem;
+    max-width: 42rem;
   }
 }
 @media (min-width: 56rem) {
   .container {
-    max-width: 38rem;
+    max-width: 48rem;
   }
 }
 
@@ -155,7 +155,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 @media (min-width: 30rem) {
   .sidebar {
-    font-size: .75rem; /* 14px */
+    font-size: .8rem;
   }
 }
 
@@ -188,17 +188,29 @@ a.sidebar-nav-item:focus {
   border-color: transparent;
 }
 
-.sidebar-section {
+.section-level-1 {
   display: block;
 /*  padding: .5rem 1rem;*/
   border-top: 1px solid rgba(255,255,255,.1);
 }
-.sidebar-section.active,
-a.sidebar-section:hover,
-a.sidebar-section:focus {
+.section-level-1.active,
+a.section-level-1:hover,
+a.section-level-1:focus {
   text-decoration: none;
   background-color: rgba(255,255,255,.1);
   border-color: transparent;
+}
+
+.section-level-2 {
+    margin-left: 24px;
+}
+
+.section-level-3 {
+    margin-left: 48px;
+}
+
+.section-level-4 {
+    margin-left: 72px;
 }
 
 @media (min-width: 48rem) {
