@@ -155,7 +155,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 @media (min-width: 30rem) {
   .sidebar {
-    font-size: .75rem; /* 14px */
+    font-size: .8rem;
   }
 }
 
@@ -199,6 +199,18 @@ a.section-level-1:focus {
   text-decoration: none;
   background-color: rgba(255,255,255,.1);
   border-color: transparent;
+}
+
+.section-level-2 {
+    margin-left: 24px;
+}
+
+.section-level-3 {
+    margin-left: 48px;
+}
+
+.section-level-4 {
+    margin-left: 72px;
 }
 
 @media (min-width: 48rem) {
