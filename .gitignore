@@ -40,3 +40,9 @@ validation-report.json
 # Folders to ignore
 node_modules
 bower_components
+
+# jekyll
+Gemfile.lock
+vendor/
+.bundle/
+_posts/2015-06-22-report.html
