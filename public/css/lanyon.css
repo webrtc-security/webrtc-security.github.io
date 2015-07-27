@@ -188,6 +188,23 @@ a.sidebar-nav-item:focus {
   border-color: transparent;
 }
 
+.sidebar-index {
+    padding: 1rem;
+    padding-top: 0;
+}
+
+.sidebar-index div {
+    padding-left: 16px;
+}
+
+.sidebar-index div:hover,
+.sidebar-index div:focus {
+      text-decoration: none;
+      background-color: rgba(255,255,255,.1);
+      border-color: transparent;
+    }
+}
+
 .section-level-1 {
   display: block;
 /*  padding: .5rem 1rem;*/
