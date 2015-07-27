@@ -9,7 +9,7 @@ Web Real-Time Communication (abbreviated as WebRTC) is a recent trend in web app
 However, the open-source nature of the technology may have the potential to cause security-related concerns to potential adopters of the technology.
 This paper will discuss in detail the security of WebRTC, with the aim of demonstrating the comparative security of the technology.
 
-## 1. Introduction
+<h2 id="1.">1. Introduction</h2>
 
 WebRTC is an open-source web-based application technology, which allows users to send real-time media without the need for installing plugins. Using a suitable browser can enable a user to call another party simply by browsing to the relevant webpage.
 
@@ -25,33 +25,14 @@ The prospect of enabling embedded audio and visual communication in a browser wi
 
 This report will address these topics and examine the protections that WebRTC provides to provide security in all cases. For the purposes of this paper however, native applications will be treated as being out of scope.
 
-## 2. Overview of WebRTC Architecture
+<h2 id="2.">2. Overview of WebRTC Architecture</h2>
 
 WebRTC enables direct media-rich communication between two peers, using a peer-to-peer (P2P) topology. WebRTC resides within the user's browser, and requires no additional software to operate. The actual communication between peers is prefaced by an exchange of metadata, termed "signalling". This process is used to initiate and advertise calls, and facilitates connection establishment between unfamiliar parties.
 
 As depicted in Figure 1, this process occurs through an intermediary server:
 
-                    +----------------+
-                    |                |
-                    |    Signaling   |
-                    |    Server      |
-                    |                |
-                    +----------------+
-                      ^           ^
-                     /             \
-         Signaling  /               \   Signaling
-                   /                 \
-                  /                   \
-                 v                     v
-               JS API                  JS API
-          +-----------+             +-----------+
-          |           |    Media    |           |
-          |  Browser  |<----------->|  Browser  |
-          |           |             |           |
-          +-----------+             +-----------+
-              Alice                      Bob
-
-Figure 1. A simple WebRTC Call Topology
+![Figure 1. A simple WebRTC Call Topology](/images/diagram_1_en.png)
+<h3 class="img-title">*Figure 1. A simple WebRTC Call Topology*</h3>
 
 A signaling protocol is not specified within WebRTC, allowing developers to implement their own choice of protocol. This allows for a deeper degree of flexibility in adapting a WebRTC app for a specific usecase or scenario.
 
@@ -88,11 +69,12 @@ The RTCDataChannel is the second main API offered as part of WebRTC, and represe
 
 Although a number of alternative options for communication channels exist (e.g. WebScoket, Server Sent Events), however these alternatives were designed for communication with a server rather than a directly-connected peer. RTCDataChannel resembles the popular WebSocket, but instead takes a peer-to-peer format while offering customisable delivery properties of the underlying transport.
 
-## 2.1. Underlying Technologies
+<h3 id="2.1.">2.1. Underlying Technologies</h3>
 
 The three main APIs are the developer-facing aspects of WebRTC, but there are a number of foundational technologies which are utilised in order to provide these protocols (the RTCPeerConnection and RTCDataChannel APIs).
 
-![Figure X. WebRTC Protocol Stack](http://orm-chimera-prod.s3.amazonaws.com/1230000000545/images/hpbn_1803.png)
+![Figure 2. WebRTC Protocol Stack](/images/diagram_2_en.png)
+<h3 class="img-title">*Figure 2. WebRTC Protocol Stack*</h3>
 
 ICE, STUN, and TURN (INSERT HYPERLINKS) are necessary to establish and maintain a peer-to-peer connection over UDP. DTLS (INSERT HYPERLINK) is used to secure all data transfers between peers, as encryption is a mandatory feature of WebRTC. Finally, SCTP and SRTP (INSERT HYPERLINK) are the application protocols used to multiplex the different streams, provide congestion and flow control, and provide partially reliable delivery and other additional services on top of UDP.
 
@@ -143,9 +125,7 @@ TURN servers can ensure high success in setting up calls, regardless of the end-
 
 The server itself is typically not freely accessible, and has to be specifically provided (or rented) by the application provider.
 
-
-
-## 3. Browser-based Security Considerations
+<h2 id="3.">3. Browser-based Security Considerations</h2>
 
 From http://www.html5rocks.com/en/tutorials/webrtc/basics/#toc-security :
 
@@ -153,7 +133,7 @@ There are a number of ways in that a real-time communication application may imp
 
 WebRTC differs from other RTC apps by providing a strong and reliable infrastructure for even new developers to utilise without compromising on security. We will now proceed to discuss how WebRTC deals with each of these risks in turn.
 
-### 3.1. Browser Trust Model
+<h3 id="3.1.">3.1. Browser Trust Model</h2>
 
 The WebRTC architecture assumes from a security perspective that network resources exist in a hierarchy of trust. From the user's perspective, the browser (or user client) is basis of all WebRTC security, and acts as their Trusted Computing Base (TCB).
 
@@ -167,7 +147,7 @@ If the user chooses a suitable browser which they know can trust, then all WebRT
 
 In other words, the level of trust provided to the user by WebRTC is directly influenced by the user's trust in the browser.
 
-### 3.2. SOP: Same Origin Policy
+<h3 id="3.2.">3.2. SOP: Same Origin Policy</h2>
 
 https://tools.ietf.org/html/draft-ietf-rtcweb-security-08#section-3.2 <-- latest version
 
@@ -179,7 +159,7 @@ Through enforcing execution sandboxes on a per-origin basis, the end user is pro
 
 Similarly, the servers of e.g the webpage provider are protected from attacks mounted via the user's browser; If such safeguards did not exist, DoS attacks could otherwise be launched through abusive resource requests.
 
-#### 3.2.1 Bypassing SOP
+<h4 id="3.2.1.">3.2.1 Bypassing SOP</h4>
 
 SOP is incredibly important for the security of both the user and web servers in general, although it does have the disadvantage of making certain types of web app harder to create. Methods of permitting inter-site interaction do exist, although these are typically mutually consensual and limited to certain channels.
 
@@ -189,9 +169,9 @@ WebSockets is another option allowing similar functionality, but on transparent 
 
 In both cases, the initial verification stage prevents the arbitrary transfer of data by a script with a different origin.
 
-## 4. WebRTC Security Considerations
+<h2 id="4.">4. WebRTC Security Considerations</h2>
 
-### 4.1. Installation and Updates
+<h3 id="4.1.">4.1. Installation and Updates</h3>
 
 A prevalent issue with traditional desktop software is whether one can trust the application itself. Installation of new software or a plugin can potentially surruptiously install malware or other undesirable software. Many end users have no idea where the software was made or exactly who they are downloading the app from. Malicious third parties have had great success in repackaging perfectly safe and trusted software to include malware, and offering their custom package on free software websites.
 
@@ -203,14 +183,14 @@ Contrary to this, browsers are a fast-paced development scene due to the frequen
 
 As a side note: Although we have stated that WebRTC requires no plugins to be installed, it is possible that third-party WebRTC frameworks may offer plugins to enable support on currently unsupported browsers (such as Safari and IE). User caution (or a supported browser) is recommended in such instances.
 
-### 4.2. Access to Media/Local resources
+<h3 id="4.2.">4.2. Access to Media/Local resources</h3>
 
 The browser can access local resources (including camera, mic, files), which leads the inevitable concern of a web application accessing a user's microphone and camera. If web applications could freely gain access to a user's camera or microphone, an unscrupulous app may attempt to record or distribute video or audio feeds without the user's knowledge. It could be a simple matter for a website residing in a background tab to abuse the user's trust (the user may not even realise a site harbours such a communication application).
 
 WebRTC combats this by requiring the user to give explicit permission for the camera or microphone to be used (both can be configured indivudally). It is possible to ask the user for one-time or permanent access. It is not possible for a WebRTC application to arbitrarily gain access or operate either device. Furthermore, when either the microphone or camera is being used the client UI is required to expressly show the user that the microphone or camera are being operated. In Chrome, this takes the form of a red dot on any tab accessing a user's media.
 
-![Figure X. Chrome UI Indicators](http://i.imgur.com/a1XfIR2.png)
-![Figure X. Chrome UI Indicators](http://cdn.slashgear.com/wp-content/uploads/2014/01/chrome_32.jpg)
+![Figure 3. Chrome UI Indicators](/images/diagram_3_en.png)
+<h3 class="img-title">*Figure 3. Chrome UI Indicators*</h3>
 
 The philosophy of this security protection is that a user should always be making an informed decision on whether they should permit a call to take place, or to receive a call. In other words, a user must understand:
 - Who or what is requesting access to his media
@@ -221,13 +201,13 @@ As an additional provision, the WebRTC spec specifies that browsers SHOULD stop 
 
 Screen sharing introduces further security considerations due to the inherent flexibility of scope. A user may not be immediately aware of the extent of the information that they are sharing. For instance, they may believe they are simply sharing a stream of a particular window (e.g. while giving a presentation to remote parties), when in reality they are showing their entire screen to their audience. This may be a result of the user failing to correctly establish the initial screen sharing setup, or else that the user may simply forget the extent of what they are sharing.
 
-### 4.3. Media Encryption & Communication Security
+<h3 id="4.3.">4.3. Media Encryption & Communication Security</h3>
 
 There are a number of ways in that a real-time communication application may impose security risks. One particularly notable one is the interception of unencrypted media or data during transmission. This can occur between browser-browser or browser-server communication, with an eavesdropping third-party able to see all data sent. Encryption however, renders it effectively impossible for an eavesdropper to determine the contents of communication streams. Only parties with access to the secret encryption key can decode the communication streams.
 
 Encryption is a mandatory feature of WebRTC, and is enforced on all components, including signaling mechanisms. Resultantly, all media streams sent over WebRTC are securely encrypted, enacted through standardised and well-known encryption protocols. The encryption protocol used depends on the channel type; data streams are encrypted using Datagram Transport Layer Security (DTLS) and media streams are encrypted using Secure Real-time Transport Protocol (SRTP).
 
-#### 4.3.1. DTLS: Datagram Transport Layer Security
+<h4 id="4.3.1.">4.3.1. DTLS: Datagram Transport Layer Security</h4>
 
 http://blog.cryptographyengineering.com/2012/01/attack-of-week-datagram-tls.html
 
@@ -237,7 +217,7 @@ DTLS is a standardised protocol which is built into all browsers that support We
 
 As DTLS is a derivative of SSL, all data is known to be as secure as using any standard SSL based connection. In fact, WebRTC data can be secured via any standard SSL based connection on the web, allowing WebRTC to offer end-to-end encryption between peers with almost any server arrangement.
 
-##### 4.3.1.1. DTLS over TURN
+<h5 id="4.3.1.1.">4.3.1.1. DTLS over TURN</h5>
 
 The default option for all WebRTC communication is direct P2P communication between two browsers, aided with signalling servers during the setup phase. P2P encryption is relatively easy to envisage and setup, but in the case of failure WebRTC setup falls back to communication via a TURN server (if available). During TURN communication the media can suffer a loss of quality and increased latency, but it allows an "if all else fails" scenario to permit WebRTC application to work even under challenging circumstances. We must also consider encrypted communication under TURN's alternative communication structure. 
 
@@ -245,13 +225,13 @@ It is known that regardless of communication method, the sent data is encrypted 
 
 Resultantly, the protections put in place through encryption are therefore not compromised during WebRTC communication over TURN, and the server cannot understand or modify information that peers send to each other.
 
-#### 4.3.2. SRTP: Secure Real-time Transport Protocol
+<h4 id="4.3.2.">4.3.2. SRTP: Secure Real-time Transport Protocol</h4>
 
 Basic RTP does not have any built-in security mechanisms, and thus places no protections of the confidentiality of transmitted data. External mechanisms are instead relied on to provide encryption. In fact, the use of unencrypted RTP is explicitly forbidden by the WebRTC specification.
 
 WebRTC utilises SRTP for the encryption of mediastreams, rather than DTLS. This is because SRTP is a lighter-weight option than DTLS. The specification requires that any compliant WebRTC implementation support RTP/SAVPF (which is built on top of RTP/SAVP) [link: http://tools.ietf.org/wg/rtcweb/]. However, the actual SRTP key exchange is inially performed end-to-end with DTLS-SRTP, allowing for the detection of any MiTM attacks.
 
-#### 4.3.3. Establishment of a secure link
+<h4 id="4.3.3.">4.3.3. Establishment of a secure link</h4>
 
 http://www.onsip.com/webrtc-sip-network/webrtc-implementation/webrtc-security
 
@@ -261,7 +241,7 @@ Once the initial ICE checks have concluded (or specifically, some of them), the 
 
 Once the DTLS handshake completes, the keys are "exported" and used to key SRTP for the media channels. At this stage both parties know that they share a set of secure data and/or media channels with keys which are not known to any malicious third-party.
 
-####  4.3.4. DTLS-SRTP vs SDES
+<h4 id="4.3.4.">4.3.4. DTLS-SRTP vs SDES</h4>
 
 https://webrtchacks.com/webrtc-must-implement-dtls-srtp-but-must-not-implement-sdes/
 
@@ -295,47 +275,20 @@ It is generally accepted that DTLS-SRTP should be the madatory and default optio
 
 From the compatibility persepctive, Google's Chrome browser provides support for both SDES and DTLS-SRTP. Mozilla's Firefox on the other hand only implementes DTLS-SRTP.
 
-#### 4.3.5. A Weakness in SRTP
+<h4 id="4.3.5.">4.3.5. A Weakness in SRTP</h4>
 
 SRTP only encrypts the payload of RTP packets, providing no encryption for the header. However, the header contains a variety of information which may be desirable to keep secret.
 
 One such piece of information included in the RTP header is the audio-levels of the contained media data. Effectively, anyone anyone who can see the SRTP packets can tell whether a user is speaking or not at any given time. Although the contents of the media itself remains secret to any eavesdropper, this is still a scary prospect. For example, Law enforcement officals could determine whether a user is communicating with a known badguy.
 
-### 4.4. Web-Based Peer Authentication / Identity Management
+<h3 id="4.4.">4.4. Web-Based Peer Authentication & Identity Management</h3>
 
 It is desirable for a user to be able to verify the identify of their peers. I.e. a user naturally wants to be certain that they are speaking to the person they believe that they are speaking to, and not an imposter.
 
 Although the signalling server may be able to go some way towards claiming a user's identity, the signalling server itself may not (and for the case of authentication SHOULD not) be trusted. We need to be able to perform authentication of our peers independently from the signalling server. This can be made possible through the use of identity providers.
 
-
-                               +----------------+
-                               |                |
-                               |    Signaling   |
-                               |     Server     |
-                               |                |
-                               +----------------+
-                                   ^        ^
-                                  /          \
-                          HTTPS  /            \   HTTPS
-                                /              \
-                               /                \
-                              v                  v
-                           JS API              JS API
-                     +-----------+            +-----------+
-                     |           |    Media   |           |
-               Alice |  Browser  |<---------->|  Browser  | Bob
-                     |           | (DTLS+SRTP)|           |
-                     +-----------+            +-----------+
-                           ^      ^--+     +--^     ^
-                           |         |     |        |
-                           v         |     |        v
-                     +-----------+   |     |  +-----------+
-                     |           |<--------+  |           |
-                     |   IdP1    |   |        |    IdP2   |
-                     |           |   +------->|           |
-                     +-----------+            +-----------+
-
-                 Figure X: A call with IdP-based identity
+![Figure 4. A call with IdP-based identity](/images/diagram_4_en.png)
+<h3 class="img-title">*Figure 4. A call with IdP-based identity*</h3>
 
 A number of web-based identity providers (IdP) have recently become commonplace on the web, including Facebook Connect, BrowserID (by Mozilla), OAuth (by Twitter). The purpose of these mechanisms is simply to verify your identity to other services/users, on the authority of the identity provider itself. If a user has an account on Facebook then they can then use Facebook Connect, Facebook's IdP to prove to others that the are who they say they are on Facebook. This allows users to tie their authentication on other services to their main account on a "trusted" service. Note that in this case the level of "trust" that an Identity Provider possesses is subjective to the end-point user or service, and is often largely tied to userbase and reputation across the World Wide Web.
 
@@ -343,33 +296,10 @@ The implementations of each IdP may differ due to independent development by dif
 
 As the web application (calling site) is unrelated to this authentication process, it is important that the browser securely generates the input to the authentication process, and also securely displays the output on the web application. This process must not be able to be falisified or misrepresented by the web application.
 
-                +--------------------------------------+
-                | Browser                              |
-                |                                      |
-                | +----------------------------------+ |
-                | | https://calling-site.example.com | |
-                | |                                  | |
-                | |        Calling JS Code           | |
-                | |               ^                  | |
-                | +---------------|------------------+ |
-                |                 | API Calls          |
-                |                 v                    |
-                |          PeerConnection              |
-                |                 ^                    |
-                |                 | API Calls          |
-                |     +-----------|-------------+      |   +---------------+
-                |     |           v             |      |   |               |
-                |     |       IdP Proxy         |<-------->|   Identity    |
-                |     |                         |      |   |   Provider    |
-                |     | https://idp.example.org |      |   |               |
-                |     +-------------------------+      |   +---------------+
-                |                                      |
-                +--------------------------------------+
+![Figure 5. The operation of an Identity Provider](/images/diagram_5_en.png)
+<h3 class="img-title">*Figure 5. The operation of an Identity Provider*</h3>
 
-                Figure X: The operation of an Identity Provider
-
-
-### 4.5. IP Location Privacy
+<h3 id="4.5.">4.5. IP Location Privacy</h3>
 
 https://datatracker.ietf.org/doc/draft-ietf-rtcweb-security/?include_text=1  
 
@@ -385,7 +315,7 @@ The second such provision is that any implementation will provide a mechanism fo
 
 Furthermore, there is a mechanism for the calling app to reconfigure an existing call to add non-TURN candidates. Taken together with the previous provision, this allows ICE negotiation to start immediately upon an incoming call notification, thereby reducing delay, but also avoiding disclosing the user's IP address until they have decided to answer. This allows users to completely hide their IP address for the duration of the call.
 
-### 4.6. Signalling Layer
+<h3 id="4.6.">4.6. Signalling Layer</h3>
 
 http://www.onsip.com/webrtc-sip-network/webrtc-implementation/webrtc-security
 http://searchunifiedcommunications.techtarget.com/feature/Security-in-a-SIP-network-Identifying-network-attacks
@@ -396,20 +326,19 @@ SIP is a widely implemented standard used in VoIP communication to setup and tea
 
 Since SIP is sent in clear text, it is trivial for a determined attacker to intercept SIP messages. What happens next is left up to the imagination of the attacker, but it is not hard to imagine an eventuality in that the contents of the message body or header is tampered with. If the attacker intercepts an INVITE message, they may then proceed to change the FROM header to reflect his or her own IP address.
 
-#### 4.6.1. SIP Vulnerabilities
+<h4 id="4.6.1.">4.6.1. SIP Vulnerabilities</h4>
 
 http://www.symantec.com/connect/articles/two-attacks-against-voip
 
 SIP is a communications protocol for signalling and controlling multimedia communication sessions and is frequently implemented in VoIP technologies for the purposes of setting up and tearing down phone calls. It can similarly be used in a WebRTC implementation for signalling purposes, as one of a number of possible such options. However, SIP messages are frequently sent in plain text. As this can naturally result in a number of potential attack vectors, we will take a closer examination of this area.
 
-*SIP Flow*
-
+**SIP Flow**
 
 In the process of setting up a call, a user's browser (or "User Agent") registers with a central registrar. This registration is a necessity in traditional VoIP as it is necessary to provide the means to locate and contact a remote party.
 
 When a party (Bob) wants to initiate a call, he sends an INVITE message via a central proxy server (this is the signalling server). The server is responsible for relaying such messsages, and providing the means to locate other users. The server may attempt a number of measures to locate a end-user during this lookup process, such as utilising DNS.
 
-*Registration Hijacking*
+**Registration Hijacking**
 
 The initial browser registration is used to announce a user's point of contact, and indicates that a user's device is accepting calls. However the process provides a vector for malicious entities to perform a "Registration Hijack" attack.
 
@@ -427,7 +356,7 @@ As the implementation of SIP does not support the checking integrity of the mess
 
 This attack can be suppressed by implementing SIPS (SIP over TLS) and authenticating SIP requests and responses (which can include integrity protection). In fact, the use of SIPS and the authentication of responses can suppress many associated attacks including eavesdropping and message or user impersonation.
 
-*Other possible attacks*
+**Other possible attacks**
 
 - MiTM attack
   - If the attacker is able to intercept the initial SIP messages, he or she may then perform a MiTM attack. 
@@ -446,7 +375,7 @@ Although it may seem that signalling provides a particularly tempting vantage-po
 Although outside of this report's scope, other signalling technologies can similarly use TLS to encrypt their WebSocket or other web traffic. As with all encryption, if the third party does not know the secret encryption key, they are thereby unable to read the plain-text contents of the communication. This helps eliminate the risk of much of the above attack vectors, although it should be noted that the application programmer must specifically implement the encrypted signalling method for this to be applicable.
 
 
-### 4.7. Additional Security Topics
+<h3 id="4.7.">4.7. Additional Security Topics</h3>
 
 https://altanaitelecom.wordpress.com/2014/10/03/security-for-webrtc-applications/
 
@@ -468,7 +397,7 @@ Their effect may range from a petty nuisance to a significant security risk, dep
 
 As the primary method for accessing WebRTC is expected to be using HTML5 enabled browsers there are specific security considerations concerning their use such as; protecting keys and sensitive data from cross-site scripting or cross-domain attacks, websocket use, iframe security, and other issues. Because the client software will be controlled by the user and because the browser does not, in most cases, run in a protected environment there are additional chances that the WebRTC client will become compromised. This means all data sent to the client could be exposed.
 
-## 5. Comparison with competing/similar technologies
+<h2 id="5.">5. Comparison with competing/similar technologies</h2>
 
 An examination of WebRTC's comparative security would fail to make sense without also considering the security of the competition. Fortunately for WebRTC, the competition in the web-based communication arena has 
 This section will explore the comparitive strengths and weaknesses of WebRTC and other platforms offering competiting RTC functionality.
@@ -481,48 +410,46 @@ Although widely relied upon, the additional installation processes can pose a ba
 - Silverlight
 - Jabber
 - SIP
-~~- ORTC (https://bloggeek.me/ortc-webrtc/)~~
 
-
-## 6. Secure Coding Practices (Good (secure) coding conventions for WebRTC applications.)
+<h2 id="6.">6. Good (secure) coding conventions for WebRTC applications</h2>
 
 WebRTC is built to be secure. However more than just bindly relying on the underlying technology, it is a good idea to consciously code with security in mind. This section will discuss coding practices that may be followed to ensure greater security over a vanilla WebRTC implementation. In particular, these practices could be applicable to organisations which expect to handle senstive information, eg. banking institutions, healthcare institutions or confidential corporate information.
 
-*Secure Signalling*
+**Secure Signalling**
 
 As mentioned previously, WebRTC does not impose any constraints on the signalling process, rather leaving the developer to decide upon their own preferred method. Although this allows for a degree of flexibility that can have the WebRTC implementation tailored to the needs of the application, there can be risks associated with certain signalling protocols. 
 
 It is advisable to implement a signalling protocol that provides additional security, such as encryption of signalling traffic. By default a signalling process may not incorporate any encryption, which can leave the contents of all exchanged signalling messages open to eavesdropping. Applications with a focus upon security/confidentiality should therefore ensure that their signalling layer is implemented over a secure protocol such as SIPS, OpenSIP, HTTPS or WSS.
 
-*Authentication and peer monitoring*
+**Authentication and peer monitoring**
 
 A basic WebRTC app requires only a user's ID in order to perform a call, with no authentication performed from the view point of the service itself. It may be desirable to require pre-registration or authentication before any user can participate in a call. Unauthenticated entities should then be kept away from session’s reach, restricting accessibility to untrusted parties.
 
 Since the media connections are P2P, the media contents (audio and video channels) are transmitted between peers directly in full duplex. Thus as the signalling server maintains the number of peers in communication, it could be consistently monitored for addition of suspicious peers in a call session. If the number of peers actually present on signalling server is more that the number of peers interacting on WebRTC page then it could mean that someone is eavesdropping secretly and should be terminated from session access by force.
 
-*Permission Requests*
+**Permission Requests**
 
 It is a noted behaviour that often users will agree to permission requests or similar dialogs without consciously reading the message. This poses the risk of granting a web application with permissions which were not actually intended by the user.
 
 Although this behaviour itself can not be easily dealt with, one solution could be to clearly detail on the page what permissions the application will ask for. Such an application places a user's privacy at the forefront.
 
-*Man-In-The-Middle*
+**Man-In-The-Middle**
 
 In the eventuality that a malicious party succeeds in setting up a MitM attack, there is typically not an easy solution to discover or fight against it. This is because the attack has no warning, and communication is allowed to proceed as normal. If one is not expecting such an attack, the attack will likely continue unnoticed.
 
 However, by monitoring the media path regularly for no suspicious relays, we can take one small step towards mitigating against MiTM attacks. This should be coupled with encrypted signalling, as mentioned above.
 
-*Screen Sharing*
+**Screen Sharing**
 
 An application offering any degree of screen-sharing functionality should have warnings in place to protect the user. As previously discussed, a user may not be aware of the extent of the screen being shared. Such an issue should fall back to a properly designed application to provide appropriate such information.
 
 For example, before initiating the streaming of any part of the screen, the user should be properly notified and advised to close any screen containing sensitive information.
 
-*A Fallback*
+**A Fallback**
 
 As a final fallback measure, we could venture as far as imagining a situation in that an active call session is compromised by a unauthorised party. If a call is confirmed to be compromised in such a way, it should be within the power of Web Application server rendering the WebRTC capable page to cut off the call.
 
-## 7. Conclusion
+<h2 id="7.">7. Conclusion</h2>
 
 https://bloggeek.me/webrtc-most-secure-voip/
 
@@ -537,7 +464,7 @@ As a result of this strong focus on secure communication, WebRTC is currently re
 In the near future we can expect to see more and more communication services providing greatly increased security to their users. But for now, WebRTC is one of those who are leading the charge.
 
 
-## 8. Bibliography
+<h2 id="8.">8. Bibliography</h2>
 
 To Do.
 

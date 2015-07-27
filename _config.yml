@@ -8,7 +8,7 @@ permalink:        pretty
 
 # Setup
 title:            A Study of WebRTC Security
-tagline:          'Ewan Leaver'
+tagline:          
 description:      "An open-source discussion on WebRTC security."
 url:              http://webrtc-security.github.io
 
