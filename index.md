@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: A Study of WebRTC Security
 ---
 
@@ -233,7 +233,7 @@ http://blog.cryptographyengineering.com/2012/01/attack-of-week-datagram-tls.html
 
 WebRTC encrypts information (specifically data channels) using Datagram Transport Layer Security (DTLS). All data sent over RTCDataChannel is secured using DTLS.
 
-DTLS is a standardised protocol which is built into all browsers that support WebRTC, and is one protocol consistently used in web browsers and VoIP platforms to encrypt information. The built-in nature also means that no prior setup is required before use. As with other encryption protocols it is designed to prevent eavesdropping and information tampering. DTLS itself is modelled upon the stream-orientated TLS, a protocol which offers full encryption with asymmetric cryptography methods, data authentication, and message authentication. TLS is the de-facto standard for web encryption, utilised for the purposes of such protocols as HTTPS. TLS is designed for the reliable transport mechanism of TCP, but VoIP apps (and games etc) typically utilise unreliable datagram transports such as UDP.
+DTLS is a standardised protocol which is built into all browsers that support WebRTC, and is one protocol consistently used in web browsers, email, and VoIP platforms to encrypt information. The built-in nature also means that no prior setup is required before use. As with other encryption protocols it is designed to prevent eavesdropping and information tampering. DTLS itself is modelled upon the stream-orientated TLS, a protocol which offers full encryption with asymmetric cryptography methods, data authentication, and message authentication. TLS is the de-facto standard for web encryption, utilised for the purposes of such protocols as HTTPS. TLS is designed for the reliable transport mechanism of TCP, but VoIP apps (and games etc) typically utilise unreliable datagram transports such as UDP.
 
 As DTLS is a derivative of SSL, all data is known to be as secure as using any standard SSL based connection. In fact, WebRTC data can be secured via any standard SSL based connection on the web, allowing WebRTC to offer end-to-end encryption between peers with almost any server arrangement.
 
@@ -404,6 +404,7 @@ SIP is a communications protocol for signalling and controlling multimedia commu
 
 *SIP Flow*
 
+
 In the process of setting up a call, a user's browser (or "User Agent") registers with a central registrar. This registration is a necessity in traditional VoIP as it is necessary to provide the means to locate and contact a remote party.
 
 When a party (Bob) wants to initiate a call, he sends an INVITE message via a central proxy server (this is the signalling server). The server is responsible for relaying such messsages, and providing the means to locate other users. The server may attempt a number of measures to locate a end-user during this lookup process, such as utilising DNS.
@@ -469,21 +470,19 @@ Their effect may range from a petty nuisance to a significant security risk, dep
 
 ## 5. Comparison with competing/similar technologies
 
-An examination of WebRTC's comparative security would fail to make sense without also considering the security of the competition. This section will explore the comparitive strengths and weaknesses of WebRTC and other platforms offering competiting RTC functionality. Currently a work in progress, this content will be expanded upon as research continues.
+An examination of WebRTC's comparative security would fail to make sense without also considering the security of the competition. Fortunately for WebRTC, the competition in the web-based communication arena has 
+This section will explore the comparitive strengths and weaknesses of WebRTC and other platforms offering competiting RTC functionality.
 
-*Adoption & Security*
+Some platforms we COULD explore are the following. The platforms to be explored have not yet been chosen. (To come after first-draft.)
 
-Although readily usable, WebRTC does require a modern browser with support built in. This may have limited growth during it's initial introduction, WebRTC  adoption is quickly gaining speed and is poised to rapidly reach new highs. Perhaps the biggest obstacle is the large population of the internet still trapped behind Microsoft's IE browsers and Safari on iOS devices. Some third party WebRTC frameworks have independently started providing plugins for IE & Safari, thereby building a bridge to these otherwise impenetrable platforms. 
+Although widely relied upon, the additional installation processes can pose a barrier
 
-Further to this, Microsoft is already building compatability of WebRTC components into it's new Edge browser however, offering future prospect of even wider adoption. IE 10 also introduced auto-updates thereby allowing future versions with new features to be rolled out to the entire install base instantly. It is worth noting that the modern trend of browser auto updates allows for the rapid roll out of security updates to WebRTC implementations, should they be made available.
+- Flash
+- Silverlight
+- Jabber
+- SIP
+~~- ORTC (https://bloggeek.me/ortc-webrtc/)~~
 
-Most competiting technologies are farily ubiquitous, with plugin or application support on most major platforms. But fortunately for WebRTC, much of the competition in the web-based communication arena has its own share of issues. Although having achieved large market penetration, their typical inherent lack of focus on security has also put their entire eudience at frequent risk of attack. The most notorious example of this is likely Adobe Flash, with alarmingly frequent zero-day vulnerability announcements and patches. This constant patch cycle has led to growing calls for the retirement of the technology, something which even 5 years ago seemed near impossible, due to the truely wide-spread implementation of the technology. iOS is well known to have been the first platform to spurn Flash however, and HTML 5's implementation of web video has since gone a long way to decrease reliance on the technology, marking the technology's noteable fall from dominance.
-
-*Speed & Latency*
-
-Until now, communication via the web browser has predominantly been server-based. That is to say, all communication between peers passes through one or more intermediate servers, which naturally introduces latency to the communication link. Compare this with WebRTC where the preferred transmission method is P2P, theoreticlaly offering the fastest connection possible between any two points on the internet.
-
-Additionally, technologies such as Flash introduce overheads on top of the communication due to the use of bulky and outdated programming languages and code. This can result in degraded call quality, or slowed browser response. WebRTC is coded in JavaScript, which allows native web intregration, and can respond directly to connection speed as a result, automatically providing the best quality possible on the current connection.
 
 ## 6. Secure Coding Practices (Good (secure) coding conventions for WebRTC applications.)
 
