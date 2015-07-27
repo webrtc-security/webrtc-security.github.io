@@ -399,17 +399,19 @@ Their effect may range from a petty nuisance to a significant security risk, dep
 
 <h2 id="5.">5. Comparison with competing/similar technologies</h2>
 
-An examination of WebRTC's comparative security would fail to make sense without also considering the security of the competition. Fortunately for WebRTC, the competition in the web-based communication arena has 
-This section will explore the comparitive strengths and weaknesses of WebRTC and other platforms offering competiting RTC functionality.
+An examination of WebRTC's comparative security would fail to make sense without also considering the security of the competition. This section will explore the comparitive strengths and weaknesses of WebRTC and other platforms offering competiting RTC functionality. Currently a work in progress, this content will be expanded upon as research continues.
 
-Some platforms we COULD explore are the following. The platforms to be explored have not yet been chosen. (To come after first-draft.)
+**Adoption & Security**
 
-Although widely relied upon, the additional installation processes can pose a barrier
+Further to this, Microsoft is already building compatability of WebRTC components into it's new Edge browser however, offering future prospect of even wider adoption. IE 10 also introduced auto-updates thereby allowing future versions with new features to be rolled out to the entire install base instantly. It is worth noting that the modern trend of browser auto updates allows for the rapid roll out of security updates to WebRTC implementations, should they be made available.
 
-- Flash
-- Silverlight
-- Jabber
-- SIP
+Most competiting technologies are farily ubiquitous, with plugin or application support on most major platforms. But fortunately for WebRTC, much of the competition in the web-based communication arena has its own share of issues. Although having achieved large market penetration, their typical inherent lack of focus on security has also put their entire eudience at frequent risk of attack. The most notorious example of this is likely Adobe Flash, with alarmingly frequent zero-day vulnerability announcements and patches. This constant patch cycle has led to growing calls for the retirement of the technology, something which even 5 years ago seemed near impossible, due to the truely wide-spread implementation of the technology. iOS is well known to have been the first platform to spurn Flash however, and HTML 5's implementation of web video has since gone a long way to decrease reliance on the technology, marking the technology's noteable fall from dominance.
+
+**Speed & Latency**
+
+Until now, communication via the web browser has predominantly been server-based. That is to say, all communication between peers passes through one or more intermediate servers, which naturally introduces latency to the communication link. Compare this with WebRTC where the preferred transmission method is P2P, theoreticlaly offering the fastest connection possible between any two points on the internet.
+
+Additionally, technologies such as Flash introduce overheads on top of the communication due to the use of bulky and outdated programming languages and code. This can result in degraded call quality, or slowed browser response. WebRTC is coded in JavaScript, which allows native web intregration, and can respond directly to connection speed as a result, automatically providing the best quality possible on the current connection.
 
 <h2 id="6.">6. Good (secure) coding conventions for WebRTC applications</h2>
 
