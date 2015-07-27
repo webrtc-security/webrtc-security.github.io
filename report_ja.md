@@ -36,27 +36,8 @@ WeBRTCはユーザのブラウザに実装されており、追加のソフト�
 
 図1に示すように、シグナリングプロセスは中継サーバを経由して実現される。
 
-                    +----------------+
-                    |                |
-                    |    Signaling   |
-                    |    Server      |
-                    |                |
-                    +----------------+
-                      ^           ^
-                     /             \
-         Signaling  /               \   Signaling
-                   /                 \
-                  /                   \
-                 v                     v
-               JS API                  JS API
-          +-----------+             +-----------+
-          |           |    Media    |           |
-          |  Browser  |<----------->|  Browser  |
-          |           |             |           |
-          +-----------+             +-----------+
-              Alice                      Bob
-
-図1. WebRTCのシンプルなトポロジ例
+![図1. WebRTCのシンプルなトポロジ例](/images/diagram_1_en.png)
+<h3 class="img-title">*図1. WebRTCのシンプルなトポロジ例*</h3>
 
 シグナリングプロトコルはWebRTCで仕様規定されているわけではない。
 これは開発者が自身の選択でプロトコルを選べるようにしているためだ。
@@ -108,7 +89,8 @@ RTCDataChannelはWebSocketに似てているが、P2Pの形式で利用される
 
 開発者が利用するWebRTCのAPIは大きく3つあるが、配下にはそのAPIの支える多くの技術がある。
 
-(TODO: 図を後で入れる)
+![Figure 2. WebRTC Protocol Stack](/images/diagram_2_en.png)
+<h3 class="img-title">*Figure 2. WebRTC Protocol Stack*</h3>
 
 ICE、STUN、TURNはP2Pの接続を確立・維持に利用されている。
 DTLSはピア間のデータ転送をセキュアにするために利用されており、
@@ -363,7 +345,8 @@ WebRTCのアプリケーションは、デバイスを自由に扱えるわけ�
 利用中である旨が表示されるようになっている。
 Chromeの場合は、以下の図のように、赤い点がタブに表示されるようになっている。
 
-TODO: 図の挿入
+![Figure 3. Chrome UI Indicators](/images/diagram_3_en.png)
+<h3 class="img-title">*Figure 3. Chrome UI Indicators*</h3>
 
 このセキュリティの考え方は、ユーザ自身が理解した上で、
 発信・着信を許可するか決定すべき、といった考えにもとづいている。
@@ -558,36 +541,8 @@ SRTPのヘッダさえ見れば、判別することができる。
 これは、Identity Provider(IdP)によって実現される。
 
 
-```
-                               +----------------+
-                               |                |
-                               |    Signaling   |
-                               |     Server     |
-                               |                |
-                               +----------------+
-                                   ^        ^
-                                  /          \
-                          HTTPS  /            \   HTTPS
-                                /              \
-                               /                \
-                              v                  v
-                           JS API              JS API
-                     +-----------+            +-----------+
-                     |           |    Media   |           |
-               Alice |  Browser  |<---------->|  Browser  | Bob
-                     |           | (DTLS+SRTP)|           |
-                     +-----------+            +-----------+
-                           ^      ^--+     +--^     ^
-                           |         |     |        |
-                           v         |     |        v
-                     +-----------+   |     |  +-----------+
-                     |           |<--------+  |           |
-                     |   IdP1    |   |        |    IdP2   |
-                     |           |   +------->|           |
-                     +-----------+            +-----------+
-
-                 Figure X: A call with IdP-based identity
-```
+![Figure 4. A call with IdP-based identity](/images/diagram_4_en.png)
+<h3 class="img-title">*Figure 4. A call with IdP-based identity*</h3>
 
 多くのウェブベースのIdPが現在のWebで利用可能だ。
 例えば、Facebook Connect、BrowserID(Mozilla)、OAuth(Twitter)などがある。
@@ -611,32 +566,8 @@ Webアプリケーションそれ自体は認証に関係しないため、
 Webアプリケーションに結果を安全に出力する。
 このプロセスは、Webアプリケーションによって偽造されてはならない。
 
-```
-                +--------------------------------------+
-                | Browser                              |
-                |                                      |
-                | +----------------------------------+ |
-                | | https://calling-site.example.com | |
-                | |                                  | |
-                | |        Calling JS Code           | |
-                | |               ^                  | |
-                | +---------------|------------------+ |
-                |                 | API Calls          |
-                |                 v                    |
-                |          PeerConnection              |
-                |                 ^                    |
-                |                 | API Calls          |
-                |     +-----------|-------------+      |   +---------------+
-                |     |           v             |      |   |               |
-                |     |       IdP Proxy         |<-------->|   Identity    |
-                |     |                         |      |   |   Provider    |
-                |     | https://idp.example.org |      |   |               |
-                |     +-------------------------+      |   +---------------+
-                |                                      |
-                +--------------------------------------+
-
-                Figure X: The operation of an Identity Provider
-```
+![Figure 5. The operation of an Identity Provider](/images/diagram_5_en.png)
+<h3 class="img-title">*Figure 5. The operation of an Identity Provider*</h3>
 
 ### 4.5. IPによる位置情報のプライバシ
 

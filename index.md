@@ -31,27 +31,8 @@ WebRTC enables direct media-rich communication between two peers, using a peer-t
 
 As depicted in Figure 1, this process occurs through an intermediary server:
 
-                    +----------------+
-                    |                |
-                    |    Signaling   |
-                    |    Server      |
-                    |                |
-                    +----------------+
-                      ^           ^
-                     /             \
-         Signaling  /               \   Signaling
-                   /                 \
-                  /                   \
-                 v                     v
-               JS API                  JS API
-          +-----------+             +-----------+
-          |           |    Media    |           |
-          |  Browser  |<----------->|  Browser  |
-          |           |             |           |
-          +-----------+             +-----------+
-              Alice                      Bob
-
-Figure 1. A simple WebRTC Call Topology
+![Figure 1. A simple WebRTC Call Topology](/images/diagram_1_en.png)
+<h3 class="img-title">*Figure 1. A simple WebRTC Call Topology*</h3>
 
 A signaling protocol is not specified within WebRTC, allowing developers to implement their own choice of protocol. This allows for a deeper degree of flexibility in adapting a WebRTC app for a specific usecase or scenario.
 
@@ -92,7 +73,8 @@ Although a number of alternative options for communication channels exist (e.g. 
 
 The three main APIs are the developer-facing aspects of WebRTC, but there are a number of foundational technologies which are utilised in order to provide these protocols (the RTCPeerConnection and RTCDataChannel APIs).
 
-![Figure X. WebRTC Protocol Stack](http://orm-chimera-prod.s3.amazonaws.com/1230000000545/images/hpbn_1803.png)
+![Figure 2. WebRTC Protocol Stack](/images/diagram_2_en.png)
+<h3 class="img-title">*Figure 2. WebRTC Protocol Stack*</h3>
 
 ICE, STUN, and TURN (INSERT HYPERLINKS) are necessary to establish and maintain a peer-to-peer connection over UDP. DTLS (INSERT HYPERLINK) is used to secure all data transfers between peers, as encryption is a mandatory feature of WebRTC. Finally, SCTP and SRTP (INSERT HYPERLINK) are the application protocols used to multiplex the different streams, provide congestion and flow control, and provide partially reliable delivery and other additional services on top of UDP.
 
@@ -209,8 +191,8 @@ The browser can access local resources (including camera, mic, files), which lea
 
 WebRTC combats this by requiring the user to give explicit permission for the camera or microphone to be used (both can be configured indivudally). It is possible to ask the user for one-time or permanent access. It is not possible for a WebRTC application to arbitrarily gain access or operate either device. Furthermore, when either the microphone or camera is being used the client UI is required to expressly show the user that the microphone or camera are being operated. In Chrome, this takes the form of a red dot on any tab accessing a user's media.
 
-![Figure X. Chrome UI Indicators](http://i.imgur.com/a1XfIR2.png)
-![Figure X. Chrome UI Indicators](http://cdn.slashgear.com/wp-content/uploads/2014/01/chrome_32.jpg)
+![Figure 3. Chrome UI Indicators](/images/diagram_3_en.png)
+<h3 class="img-title">*Figure 3. Chrome UI Indicators*</h3>
 
 The philosophy of this security protection is that a user should always be making an informed decision on whether they should permit a call to take place, or to receive a call. In other words, a user must understand:
 - Who or what is requesting access to his media
@@ -307,35 +289,8 @@ It is desirable for a user to be able to verify the identify of their peers. I.e
 
 Although the signalling server may be able to go some way towards claiming a user's identity, the signalling server itself may not (and for the case of authentication SHOULD not) be trusted. We need to be able to perform authentication of our peers independently from the signalling server. This can be made possible through the use of identity providers.
 
-
-                               +----------------+
-                               |                |
-                               |    Signaling   |
-                               |     Server     |
-                               |                |
-                               +----------------+
-                                   ^        ^
-                                  /          \
-                          HTTPS  /            \   HTTPS
-                                /              \
-                               /                \
-                              v                  v
-                           JS API              JS API
-                     +-----------+            +-----------+
-                     |           |    Media   |           |
-               Alice |  Browser  |<---------->|  Browser  | Bob
-                     |           | (DTLS+SRTP)|           |
-                     +-----------+            +-----------+
-                           ^      ^--+     +--^     ^
-                           |         |     |        |
-                           v         |     |        v
-                     +-----------+   |     |  +-----------+
-                     |           |<--------+  |           |
-                     |   IdP1    |   |        |    IdP2   |
-                     |           |   +------->|           |
-                     +-----------+            +-----------+
-
-                 Figure X: A call with IdP-based identity
+![Figure 4. A call with IdP-based identity](/images/diagram_4_en.png)
+<h3 class="img-title">*Figure 4. A call with IdP-based identity*</h3>
 
 A number of web-based identity providers (IdP) have recently become commonplace on the web, including Facebook Connect, BrowserID (by Mozilla), OAuth (by Twitter). The purpose of these mechanisms is simply to verify your identity to other services/users, on the authority of the identity provider itself. If a user has an account on Facebook then they can then use Facebook Connect, Facebook's IdP to prove to others that the are who they say they are on Facebook. This allows users to tie their authentication on other services to their main account on a "trusted" service. Note that in this case the level of "trust" that an Identity Provider possesses is subjective to the end-point user or service, and is often largely tied to userbase and reputation across the World Wide Web.
 
@@ -343,31 +298,8 @@ The implementations of each IdP may differ due to independent development by dif
 
 As the web application (calling site) is unrelated to this authentication process, it is important that the browser securely generates the input to the authentication process, and also securely displays the output on the web application. This process must not be able to be falisified or misrepresented by the web application.
 
-                +--------------------------------------+
-                | Browser                              |
-                |                                      |
-                | +----------------------------------+ |
-                | | https://calling-site.example.com | |
-                | |                                  | |
-                | |        Calling JS Code           | |
-                | |               ^                  | |
-                | +---------------|------------------+ |
-                |                 | API Calls          |
-                |                 v                    |
-                |          PeerConnection              |
-                |                 ^                    |
-                |                 | API Calls          |
-                |     +-----------|-------------+      |   +---------------+
-                |     |           v             |      |   |               |
-                |     |       IdP Proxy         |<-------->|   Identity    |
-                |     |                         |      |   |   Provider    |
-                |     | https://idp.example.org |      |   |               |
-                |     +-------------------------+      |   +---------------+
-                |                                      |
-                +--------------------------------------+
-
-                Figure X: The operation of an Identity Provider
-
+![Figure 5. The operation of an Identity Provider](/images/diagram_5_en.png)
+<h3 class="img-title">*Figure 5. The operation of an Identity Provider*</h3>
 
 ### 4.5. IP Location Privacy
 
