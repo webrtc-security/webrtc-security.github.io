@@ -6,7 +6,7 @@ Please feel free to contribute your own knowledge and experience! When contribut
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/CloudnAPI/fork )
+1. Fork it ( https://github.com/[my-github-username]/webrtc-security.github.io/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
