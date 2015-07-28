@@ -1,6 +1,6 @@
 ---
 layout: page
-title: A Study of WebRTC Security (English)
+title: A Study of WebRTC Security
 ---
 
 ## Abstract
