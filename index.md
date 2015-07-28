@@ -50,7 +50,7 @@ getUserMedia is one such API, enabling a browser to access a user's camera and m
 
 RTCPeerConnection is the first of two APIs which are offered specifically as part of the WebRTC specification. A RTCPeerConnection interface represents the actual WebRTC connection, and is relied upon to handle the efficient streaming of data between two peers.
 
-When a caller wants to initiate a connection with a remote party, the browser starts by instantiating a RTCPeerConnection object. This includes a self-generated SDP (INSERT HYPERLINK) description to exchange with their peer. The recipient in turn responds with it's own SDP description. The SDP descriptions are used as part of the full ICE workflow (INSERT HYPERLINK) for NAT traversal.
+When a caller wants to initiate a connection with a remote party, the browser starts by instantiating a RTCPeerConnection object. This includes a self-generated SDP description to exchange with their peer. The recipient in turn responds with it's own SDP description. The SDP descriptions are used as part of the full ICE workflow for NAT traversal.
 
 With the connection now established, RTCPeerConnection enables the sending of real-time audio and video data as a bitstream between browsers.
 
@@ -76,7 +76,7 @@ The three main APIs are the developer-facing aspects of WebRTC, but there are a 
 ![Figure 2. WebRTC Protocol Stack](/images/diagram_2_en.png)
 <h5 class="img-title">*Figure 2. WebRTC Protocol Stack*</h5>
 
-ICE, STUN, and TURN (INSERT HYPERLINKS) are necessary to establish and maintain a peer-to-peer connection over UDP. DTLS (INSERT HYPERLINK) is used to secure all data transfers between peers, as encryption is a mandatory feature of WebRTC. Finally, SCTP and SRTP (INSERT HYPERLINK) are the application protocols used to multiplex the different streams, provide congestion and flow control, and provide partially reliable delivery and other additional services on top of UDP.
+ICE, STUN, and TURN are necessary to establish and maintain a peer-to-peer connection over UDP. DTLS is used to secure all data transfers between peers, as encryption is a mandatory feature of WebRTC. Finally, SCTP and SRTP are the application protocols used to multiplex the different streams, provide congestion and flow control, and provide partially reliable delivery and other additional services on top of UDP.
 
 ### SDP: Session Description Protocol
 
@@ -100,7 +100,7 @@ ICE is a framework used for establishing a connection between peers over the int
 
 Due the continuing widespread prevailence of IPv4 addresses with their limited 32-bit representation, most network-enabled devices do not have a unique public-facing IPv4 address with which it would be directly visible on the Internet. NAT works by dynamically translating private addresses into a public ones when an outbound request passes through them. Similarly, inbound requests to a public IP are converted back into a private IP to ensure correct routing on the internal network. Resultantly, sharing a private IP is often not enough information to establish a connection to a peer. ICE attempts to overcome the difficulties posed by communicating via NAT to find the best path to connect peers.
 
-By trying all possibilities in parallel, ICE is able to choose the most efficient option that works. ICE first tries to make a connection using the host address obtained from a device's operating system and network card; if that fails (which it inevitably will for devices behind NATs) ICE then obtains an external address using a STUN (INSERT HYPERLINK) server. If that also fails, traffic falls back to routing via a TURN (INSERT HYPERLINK) relay server.
+By trying all possibilities in parallel, ICE is able to choose the most efficient option that works. ICE first tries to make a connection using the host address obtained from a device's operating system and network card; if that fails (which it inevitably will for devices behind NATs) ICE then obtains an external address using a STUN server. If that also fails, traffic falls back to routing via a TURN relay server.
 
 The candidate communication routes are rendered in a text-based format, and the list ordered by priority. The options take the form of one of the following:
 - Direct P2P communication
@@ -149,7 +149,7 @@ In other words, the level of trust provided to the user by WebRTC is directly in
 
 <h3 id="3.2.">3.2. SOP: Same Origin Policy</h3>
 
-It is a fundamental aspect of the DOM that all webpage resources are fetched from the page's web server, whenever some or all of the page is loaded. Fetching of resources takes place either when a page is freshly loaded by the browser, or when a script residing on a webpage makes such a request. Such scripts are readily able to make HTTP requests via e.g. the XMLHttpRequest() API (INSERT HYPERLINK WIKIPEDIA), but are not permitted to make such requests to just any server they specify. Rather, requests have to be made to the same "origin" from where the script originated. An "origin" comprises of a URI scheme, hostname, and port number. This overall restrication is termed the "Same Origin Policy" (SOP).
+It is a fundamental aspect of the DOM that all webpage resources are fetched from the page's web server, whenever some or all of the page is loaded. Fetching of resources takes place either when a page is freshly loaded by the browser, or when a script residing on a webpage makes such a request. Such scripts are readily able to make HTTP requests via e.g. the XMLHttpRequest() API, but are not permitted to make such requests to just any server they specify. Rather, requests have to be made to the same "origin" from where the script originated. An "origin" comprises of a URI scheme, hostname, and port number. This overall restrication is termed the "Same Origin Policy" (SOP).
 
 SOP forces scripts to execute in isolated sandboxes specific to their originating domain, therefore preventing pages from different origins or even iframes on the same page from exchanging information. Webpages and scripts from the same origin server remain unhindered in interacting with each other’s JS variables. As such, the origin constitutes the basic unit of web sandboxing.
 
