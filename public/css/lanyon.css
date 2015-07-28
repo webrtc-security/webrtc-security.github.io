@@ -200,6 +200,13 @@ a.sidebar-nav-item:focus {
   border-color: transparent;
 }
 
+.sidebar-description {
+    height: 85px;
+    padding: 16px;
+    padding-left: 90px;
+    font-size: 1.2em;
+}
+
 .sidebar-index {
     padding: 1rem;
     padding-top: 0;
@@ -243,9 +250,11 @@ a.section-level-1:focus {
 }
 
 @media (min-width: 48rem) {
+    
   .sidebar-item {
     padding: 1.5rem;
   }
+    
   .sidebar-nav-item {
     padding-left:  1.5rem;
     padding-right: 1.5rem;
