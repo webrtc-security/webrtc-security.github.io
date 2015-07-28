@@ -1,6 +1,6 @@
 ---
 layout: page
-title: WebRTCセキュリティレポート
+title: WebRTCセキュリティレポート   (日本語)
 ---
 
 ## あらまし
