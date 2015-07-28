@@ -319,11 +319,11 @@ Furthermore, there is a mechanism for the calling app to reconfigure an existing
 
 As the signalling protocol is not specified by WebRTC, the mechanism for encryption obviously depends on the signalling protocol chosen. Due to the relatively open nature of signalling security, this report will focus on and briefly explain the of the most common protocol, SIP (Session Initiation Protocol).
 
-SIP is a widely implemented standard used in VoIP communication to setup and tear down phone calls. However, it is a derivative of HTTP and SMTP - both are protocols that are regularly exploited. As it uses plain-text messages to exchange information, it is feasbile for any malicious party to tap a network and capture SIP messages. If an attacker can read a user's sensitive information, they could use this information to spoof the user. Bue even if the attacker can further proceed to gain access to the operator's network, the encrypted nature of WebRTC prevents eavesdropping of media.
+SIP is a widely implemented standard used in VoIP communication to setup and tear down phone calls. However, it is a derivative of HTTP and SMTP - both are protocols that are regularly exploited. As it uses plain-text messages to exchange information, it is feasbile for any malicious party to tap a network and capture SIP messages. If an attacker can read a user's sensitive information, they could use this information to spoof the user. And if the attacker can further proceed to gain access to the operator's network, it can even be possible for them to decipher the contents of WebRTC communication.<span class="reference">[[14](#ref.14)]</span>
 
 Since SIP is sent in clear text, it is trivial for a determined attacker to intercept SIP messages. What happens next is left up to the imagination of the attacker, but it is not hard to imagine an eventuality in that the contents of the message body or header is tampered with. If the attacker intercepts an INVITE message, they may then proceed to change the FROM header to reflect his or her own IP address.
 
-<span class="reference">References: [[10](#ref.10)] [[14](#ref.14)]</span>
+<span class="reference">References: [[10](#ref.10)] [[15](#ref.15)]</span>
 
 <h4 id="4.6.1.">4.6.1. SIP Vulnerabilities</h4>
 
@@ -339,7 +339,7 @@ When a party (Bob) wants to initiate a call, he sends an INVITE message via a ce
 
 The initial browser registration is used to announce a user's point of contact, and indicates that a user's device is accepting calls. However the process provides a vector for malicious entities to perform a "Registration Hijack" attack.
 
-The exchange of registration messages includes a "Contact:" field, containing the user's IP address. Whenever the signalling server processes an incoming call, the user name (or phone number) is matched up with the registered IP address, and the INVITE is forwarded accordingly. These registrations are periodically updated, ensuring the recards are kept recent and up to date.
+The exchange of registration messages includes a "Contact:" field, containing the user's IP address. Whenever the signalling server processes an incoming call, the user name (or phone number) is matched up with the registered IP address, and the INVITE is forwarded accordingly. These registrations are periodically updated, ensuring the records are kept recent and up to date.
 
 As SIP messages are always sent in plain text, it can be trivial for an attacker to intercept and read the contents of these registration messages. Following the interception, an appropriate tool (such as SiVuS Message generator) can be used to generate similar SIP information, but with the user's true IP address replaced by the attacker's own. The attacker then only has to disable the real user and send this information periodically to divert all incoming calls to themselves.
 
@@ -371,7 +371,7 @@ Although it may seem that signalling provides a particularly tempting vantage-po
 
 Although outside of this report's scope, other signalling technologies can similarly use TLS to encrypt their WebSocket or other web traffic. As with all encryption, if the third party does not know the secret encryption key, they are thereby unable to read the plain-text contents of the communication. This helps eliminate the risk of much of the above attack vectors, although it should be noted that the application programmer must specifically implement the encrypted signalling method for this to be applicable.
 
-<span class="reference">References: [[15](#ref.15)]</span>
+<span class="reference">References: [[16](#ref.16)]</span>
 
 <h3 id="4.7.">4.7. Additional Security Topics</h3>
 
@@ -391,11 +391,12 @@ Their effect may range from a petty nuisance to a significant security risk, dep
 
 As the primary method for accessing WebRTC is expected to be using HTML5 enabled browsers there are specific security considerations concerning their use such as; protecting keys and sensitive data from cross-site scripting or cross-domain attacks, websocket use, iframe security, and other issues. Because the client software will be controlled by the user and because the browser does not, in most cases, run in a protected environment there are additional chances that the WebRTC client will become compromised. This means all data sent to the client could be exposed.
 
-<span class="reference">References: [[16](#ref.16)]</span>
+<span class="reference">References: [[17](#ref.17)]</span>
 
 <h2 id="5.">5. Comparison with competing/similar technologies</h2>
 
-An examination of WebRTC's comparative security would fail to make sense without also considering the security of the competition. Fortunately for WebRTC, the competition in the web-based communication arena has 
+An examination of WebRTC's comparative security would fail to make sense without also considering the security of the competition. Fortunately for WebRTC, the competition in the web-based communication arena has its own share of issues.
+
 This section will explore the comparitive strengths and weaknesses of WebRTC and other platforms offering competiting RTC functionality.
 
 Some platforms we COULD explore are the following. The platforms to be explored have not yet been chosen. (To come after first-draft.)
@@ -407,7 +408,7 @@ Although widely relied upon, the additional installation processes can pose a ba
 - Jabber
 - SIP
 
-<h2 id="6.">6. Good (secure) coding conventions for WebRTC applications</h2>
+<h2 id="6.">6. Secure design practices</h2>
 
 WebRTC is built to be secure. However more than just bindly relying on the underlying technology, it is a good idea to consciously code with security in mind. This section will discuss coding practices that may be followed to ensure greater security over a vanilla WebRTC implementation. In particular, these practices could be applicable to organisations which expect to handle senstive information, eg. banking institutions, healthcare institutions or confidential corporate information.
 
@@ -445,7 +446,7 @@ For example, before initiating the streaming of any part of the screen, the user
 
 As a final fallback measure, we could venture as far as imagining a situation in that an active call session is compromised by a unauthorised party. If a call is confirmed to be compromised in such a way, it should be within the power of Web Application server rendering the WebRTC capable page to cut off the call.
 
-<span class="reference">References: [[17](#ref.17)]</span>
+<span class="reference">References: [[18](#ref.18)]</span>
 
 <h2 id="7.">7. Conclusion</h2>
 
@@ -459,7 +460,7 @@ As a result of this strong focus on secure communication, WebRTC is currently re
 
 In the near future we can expect to see more and more communication services providing greatly increased security to their users. But for now, WebRTC is one of those who are leading the charge.
 
-<span class="reference">References: [[18](#ref.18)]</span>
+<span class="reference">References: [[19](#ref.19)]</span>
 
 <h2 id="8.">8. Bibliography</h2>
 
@@ -502,17 +503,20 @@ In the near future we can expect to see more and more communication services pro
 <span class="reference" id="ref.13">13. [Security Considerations for WebRTC](https://www.ietf.org/id/draft-ietf-rtcweb-security-08.txt)</span>.
 <br>www.ietf.org. Accessed on 2015-07-28.<br>
 
-<span class="reference" id="ref.14">14. [Security in a SIP network: Identifying network attacks](http://searchunifiedcommunications.techtarget.com/feature/Security-in-a-SIP-network-Identifying-network-attacks)</span>.
+<span class="reference" id="ref.14">14. [WebRTC and Man in the Middle Attacks](https://webrtchacks.com/webrtc-and-man-in-the-middle-attacks)</span>.
+<br>webrtchacks.com. Accessed on 2015-07-28.<br>
+
+<span class="reference" id="ref.15">15. [Security in a SIP network: Identifying network attacks](http://searchunifiedcommunications.techtarget.com/feature/Security-in-a-SIP-network-Identifying-network-attacks)</span>.
 <br>searchunifiedcommunications.techtarget.com. Accessed on 2015-07-28.<br>
 
-<span class="reference" id="ref.15">15. [Two attacks against VoIP](http://www.symantec.com/connect/articles/two-attacks-against-voip)</span>.
+<span class="reference" id="ref.16">16. [Two attacks against VoIP](http://www.symantec.com/connect/articles/two-attacks-against-voip)</span>.
 <br>symantec.com. Accessed on 2015-07-28.<br>
 
-<span class="reference" id="ref.16">16. [Security for WebRTC applications](https://altanaitelecom.wordpress.com/2014/10/03/security-for-webrtc-applications/)</span>.
+<span class="reference" id="ref.17">17. [Security for WebRTC applications](https://altanaitelecom.wordpress.com/2014/10/03/security-for-webrtc-applications/)</span>.
 <br>altanaitelecom.wordpress.com. Accessed on 2015-07-28.<br>
 
-<span class="reference" id="ref.17">17. [WebRTC Security](https://altanaitelecom.wordpress.com/2015/04/24/webrtc-security/)</span>.
+<span class="reference" id="ref.18">18. [WebRTC Security](https://altanaitelecom.wordpress.com/2015/04/24/webrtc-security/)</span>.
 <br>altanaitelecom.wordpress.com. Accessed on 2015-07-28.<br>
 
-<span class="reference" id="ref.18">18. [Why WebRTC is the Most Secure VoIP Solution](https://bloggeek.me/webrtc-most-secure-voip/)</span>.
+<span class="reference" id="ref.19">19. [Why WebRTC is the Most Secure VoIP Solution](https://bloggeek.me/webrtc-most-secure-voip/)</span>.
 <br>bloggeek.me. Accessed on 2015-07-28.<br>
