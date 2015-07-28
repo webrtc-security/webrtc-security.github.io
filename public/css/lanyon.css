@@ -105,6 +105,7 @@ h5 { font-size: 1.3em;}
   padding-bottom: 1rem;
   margin-bottom: 3rem;
   border-bottom: 1px solid #eee;
+/*    position: fixed;*/
 }
 .masthead-title {
   margin-top: 0;
@@ -129,7 +130,6 @@ h5 { font-size: 1.3em;}
     display: none;
   }
 }
-
 
 /*
  * Sidebar
@@ -265,6 +265,13 @@ a.section-level-1:focus {
   border-radius: 4px;
   cursor: pointer;
 }
+
+.sidebar-toggle .toggle-right {
+    right: 0px;
+    left: auto;
+    position: fixed;
+}
+
 .sidebar-toggle:before {
   display: block;
   content: "";
