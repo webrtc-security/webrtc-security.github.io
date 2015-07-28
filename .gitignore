@@ -46,5 +46,3 @@ Gemfile.lock
 vendor/
 .bundle/
 _posts/2015-06-22-report.html
-about.md
-removed-content.md
