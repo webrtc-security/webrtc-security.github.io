@@ -893,58 +893,58 @@ WebRTCはセキュリティを考慮して設計されており、
 <h2 id="8.">8. 参考文献</h2>
 
 <span class="reference" id="ref.1">1. [RTCPeerConnection API Reference](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection)</span>.
-<br>developer.mozilla.org. Accessed on 2015-07-28.<br>
+<br>developer.mozilla.org. 2015年7月28日閲覧。<br>
 
 <span class="reference" id="ref.2">2. [Brief Introduction to RTCPeerConnection API](http://chimera.labs.oreilly.com/books/1230000000545/ch18.html#_brief_introduction_to_rtcpeerconnection_api)</span>.
-<br>High Performance Browser Networking. Accessed on 2015-07-28.<br>
+<br>High Performance Browser Networking. 2015年7月28日閲覧。<br>
 
 <span class="reference" id="ref.3">3. [SDP for the WebRTC](http://tools.ietf.org/id/draft-nandakumar-rtcweb-sdp-01.html)</span>.
-<br>tools.ietf.org. Accessed on 2015-07-28.<br>
+<br>tools.ietf.org. 2015年7月28日閲覧。<br>
 
 <span class="reference" id="ref.4">4. [After signaling: using ICE to cope with NATs and firewalls](http://www.html5rocks.com/en/tutorials/webrtc/infrastructure/#after-signaling-using-ice-to-cope-with-nats-and-firewalls)</span>.
-<br>html5rocks.com. Accessed on 2015-07-28.<br>
+<br>html5rocks.com. 2015年7月28日閲覧。<br>
 
 <span class="reference" id="ref.5">5. [Getting Started with WebRTC - Security](http://www.html5rocks.com/en/tutorials/webrtc/basics/#toc-security)</span>.
-<br>html5rocks.com. Accessed on 2015-07-28.<br>
+<br>html5rocks.com. 2015年7月28日閲覧。<br>
 
 <span class="reference" id="ref.6">6. [WebRTC Security - Same Origin Policy](https://tools.ietf.org/html/draft-ietf-rtcweb-security-08#section-3.2)</span>.
-<br>tools.ietf.org. Accessed on 2015-07-28.<br>
+<br>tools.ietf.org. 2015年7月28日閲覧。<br>
 
 <span class="reference" id="ref.7">7. [Security Considerations for WebRTC](https://tools.ietf.org/html/draft-ietf-rtcweb-security-05)</span>.
-<br>tools.ietf.org. Accessed on 2015-07-28.<br>
+<br>tools.ietf.org. 2015年7月28日閲覧。<br>
 
 <span class="reference" id="ref.8">8. [Attack of the week: Datagram TLS](http://blog.cryptographyengineering.com/2012/01/attack-of-week-datagram-tls.html)</span>. 
-<br>blog.cryptographyengineering.com. Accessed on 2015-07-28.<br>
+<br>blog.cryptographyengineering.com. 2015年7月28日閲覧。<br>
 
 <span class="reference" id="ref.9">9. [Web Real-Time Communication (WebRTC): Media Transport and Use of RTP](https://tools.ietf.org/html/draft-ietf-rtcweb-rtp-usage-25)</span>. 
-<br>tools.ietf.org. Accessed on 2015-07-28.<br>
+<br>tools.ietf.org. 2015年7月28日閲覧。<br>
 
 <span class="reference" id="ref.10">10. [The Foundation of WebRTC Security](http://www.onsip.com/webrtc-sip-network/webrtc-implementation/webrtc-security)</span>.
-<br>onsip.com. Accessed on 2015-07-28.<br>
+<br>onsip.com. 2015年7月28日閲覧。<br>
 
 <span class="reference" id="ref.11">11. [WebRTC MUST implement DTLS-SRTP but… MUST NOT implement SDES?](https://webrtchacks.com/webrtc-must-implement-dtls-srtp-but-must-not-implement-sdes/)</span>.
-<br>webrtchacks.com. Accessed on 2015-07-28.<br>
+<br>webrtchacks.com. 2015年7月28日閲覧。<br>
 
 <span class="reference" id="ref.12">12. [IETF-87 rtcweb agenda](http://tools.ietf.org/wg/rtcweb/agenda?item=agenda-87-rtcweb.html)</span>.
-<br>tools.ietf.org. Accessed on 2015-07-28.<br>
+<br>tools.ietf.org. 2015年7月28日閲覧。<br>
 
 <span class="reference" id="ref.13">13. [Security Considerations for WebRTC](https://www.ietf.org/id/draft-ietf-rtcweb-security-08.txt)</span>.
-<br>www.ietf.org. Accessed on 2015-07-28.<br>
+<br>www.ietf.org. 2015年7月28日閲覧。<br>
 
 <span class="reference" id="ref.14">14. [WebRTC and Man in the Middle Attacks](https://webrtchacks.com/webrtc-and-man-in-the-middle-attacks)</span>.
-<br>webrtchacks.com. Accessed on 2015-07-28.<br>
+<br>webrtchacks.com. 2015年7月28日閲覧。<br>
 
 <span class="reference" id="ref.15">15. [Security in a SIP network: Identifying network attacks](http://searchunifiedcommunications.techtarget.com/feature/Security-in-a-SIP-network-Identifying-network-attacks)</span>.
-<br>searchunifiedcommunications.techtarget.com. Accessed on 2015-07-28.<br>
+<br>searchunifiedcommunications.techtarget.com. 2015年7月28日閲覧。<br>
 
 <span class="reference" id="ref.16">16. [Two attacks against VoIP](http://www.symantec.com/connect/articles/two-attacks-against-voip)</span>.
-<br>symantec.com. Accessed on 2015-07-28.<br>
+<br>symantec.com. 2015年7月28日閲覧。<br>
 
 <span class="reference" id="ref.17">17. [Security for WebRTC applications](https://altanaitelecom.wordpress.com/2014/10/03/security-for-webrtc-applications/)</span>.
-<br>altanaitelecom.wordpress.com. Accessed on 2015-07-28.<br>
+<br>altanaitelecom.wordpress.com. 2015年7月28日閲覧。<br>
 
 <span class="reference" id="ref.18">18. [WebRTC Security](https://altanaitelecom.wordpress.com/2015/04/24/webrtc-security/)</span>.
-<br>altanaitelecom.wordpress.com. Accessed on 2015-07-28.<br>
+<br>altanaitelecom.wordpress.com. 2015年7月28日閲覧。<br>
 
 <span class="reference" id="ref.19">19. [Why WebRTC is the Most Secure VoIP Solution](https://bloggeek.me/webrtc-most-secure-voip/)</span>.
-<br>bloggeek.me. Accessed on 2015-07-28.<br>
+<br>bloggeek.me. 2015年7月28日閲覧。<br>
