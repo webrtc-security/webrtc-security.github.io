@@ -157,3 +157,6 @@ This ensures users are protected from unwanted intrusions into their private com
 - SIP
 
 Although widely relied upon, the additional installation process for most technologies can pose it's own barrier for adoption. 
+
+http://www.visionmobile.com/blog/2012/09/webrtc-a-new-game-changer-disrupting-telcos-and-otts/
+https://www.pkcsecurity.com/blog

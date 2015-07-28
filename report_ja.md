@@ -37,7 +37,7 @@ WebRTCはユーザのブラウザに実装されており、追加のソフト�
 図1に示すように、シグナリングプロセスは中継サーバを経由して実現される。
 
 ![図1. WebRTCのシンプルなトポロジ例](/images/diagram_1_en.png)
-<h3 class="img-title">*図1. WebRTCのシンプルなトポロジ例*</h3>
+<h5 class="img-title">*図1. WebRTCのシンプルなトポロジ例*</h3>
 
 シグナリングプロトコルはWebRTCで仕様規定されているわけではない。
 これは開発者が自身の選択でプロトコルを選べるようにしているためだ。
@@ -90,7 +90,7 @@ RTCDataChannelはWebSocketに似てているが、P2Pの形式で利用される
 前述の通り、開発者が利用するWebRTCのAPIは大きく3つあるが、配下にはそのAPIの支える多くの技術がある。
 
 ![Figure 2. WebRTC Protocol Stack](/images/diagram_2_en.png)
-<h3 class="img-title">*Figure 2. WebRTC Protocol Stack*</h3>
+<h5 class="img-title">*Figure 2. WebRTC Protocol Stack*</h3>
 
 ICE、STUN、TURNはP2Pの接続を確立・維持に利用されている。
 DTLSはピア間のデータ転送をセキュアにするために利用されており、
@@ -346,7 +346,7 @@ WebRTCのアプリケーションは、デバイスを許可無く自由に扱�
 Chromeの場合は、以下の図のように、赤い点がタブに表示されるようになっている。
 
 ![Figure 3. Chrome UI Indicators](/images/diagram_3_en.png)
-<h3 class="img-title">*Figure 3. Chrome UI Indicators*</h3>
+<h5 class="img-title">*Figure 3. Chrome UI Indicators*</h3>
 
 このセキュリティの考え方は、ユーザ自身が理解した上で、
 発信・着信を許可するか決定すべき、といった考えに基づいている。
@@ -541,7 +541,7 @@ SRTPのヘッダさえ見れば、判別することができる。
 
 
 ![Figure 4. A call with IdP-based identity](/images/diagram_4_en.png)
-<h3 class="img-title">*Figure 4. A call with IdP-based identity*</h3>
+<h5 class="img-title">*Figure 4. A call with IdP-based identity*</h3>
 
 多くのウェブベースのIdPが現在のWebで利用可能だ。
 例えば、Facebook Connect、BrowserID(Mozilla)、OAuth(Twitter)などがある。
@@ -566,7 +566,7 @@ Webアプリケーションに結果を安全に出力する。
 このプロセスは、Webアプリケーションによって偽造されてはならない。
 
 ![Figure 5. The operation of an Identity Provider](/images/diagram_5_en.png)
-<h3 class="img-title">*Figure 5. The operation of an Identity Provider*</h3>
+<h5 class="img-title">*Figure 5. The operation of an Identity Provider*</h3>
 
 <h3 id="4.5.">4.5. IPによる位置情報のプライバシ</h3>
 
