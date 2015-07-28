@@ -32,7 +32,7 @@ WebRTC enables direct media-rich communication between two peers, using a peer-t
 As depicted in Figure 1, this process occurs through an intermediary server:
 
 ![Figure 1. A simple WebRTC Call Topology](/images/diagram_1_en.png)
-<h5 class="img-title">*Figure 1. A simple WebRTC Call Topology*</h3>
+<h5 class="img-title">*Figure 1. A simple WebRTC Call Topology*</h5>
 
 A signaling protocol is not specified within WebRTC, allowing developers to implement their own choice of protocol. This allows for a deeper degree of flexibility in adapting a WebRTC app for a specific usecase or scenario.
 
@@ -48,8 +48,6 @@ getUserMedia is one such API, enabling a browser to access a user's camera and m
 
 #### RTCPeerConnection
 
-https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection
-
 RTCPeerConnection is the first of two APIs which are offered specifically as part of the WebRTC specification. A RTCPeerConnection interface represents the actual WebRTC connection, and is relied upon to handle the efficient streaming of data between two peers.
 
 When a caller wants to initiate a connection with a remote party, the browser starts by instantiating a RTCPeerConnection object. This includes a self-generated SDP (INSERT HYPERLINK) description to exchange with their peer. The recipient in turn responds with it's own SDP description. The SDP descriptions are used as part of the full ICE workflow (INSERT HYPERLINK) for NAT traversal.
@@ -63,6 +61,8 @@ RTCPeerConnection has two specific traits:
  - Use of UDP/IP - there is no guarantee of packet arrival (as in TCP/IP), but there is much reduced overhead as a result.
   - (By allowing the loss of some data, we can focus upon offering real-time communication.)
 
+<span class="reference">References: [[1](#ref.1)] [[2](#ref.2)]</span>
+
 #### RTCDataChannel
 
 The RTCDataChannel is the second main API offered as part of WebRTC, and represents the main communication channel through which the exchange of arbitrary application data occurs between peers. In other words, it is used to transfer data directly from one peer to another.
@@ -74,13 +74,11 @@ Although a number of alternative options for communication channels exist (e.g. 
 The three main APIs are the developer-facing aspects of WebRTC, but there are a number of foundational technologies which are utilised in order to provide these protocols (the RTCPeerConnection and RTCDataChannel APIs).
 
 ![Figure 2. WebRTC Protocol Stack](/images/diagram_2_en.png)
-<h5 class="img-title">*Figure 2. WebRTC Protocol Stack*</h3>
+<h5 class="img-title">*Figure 2. WebRTC Protocol Stack*</h5>
 
 ICE, STUN, and TURN (INSERT HYPERLINKS) are necessary to establish and maintain a peer-to-peer connection over UDP. DTLS (INSERT HYPERLINK) is used to secure all data transfers between peers, as encryption is a mandatory feature of WebRTC. Finally, SCTP and SRTP (INSERT HYPERLINK) are the application protocols used to multiplex the different streams, provide congestion and flow control, and provide partially reliable delivery and other additional services on top of UDP.
 
 ### SDP: Session Description Protocol
-
-http://tools.ietf.org/id/draft-nandakumar-rtcweb-sdp-01.html
 
 Session Description Protocol (SDP) is a descriptive protocol that is used as a standard method of announcing and managing session invitations, as well as performing other initiation tasks for multimedia sessions. SDP represents the browser capabilities and preferences in a text-based format, and may include the following information:
 - Media capabilities (video, audio) and the employed codecs
@@ -92,9 +90,9 @@ Session Description Protocol (SDP) is a descriptive protocol that is used as a s
 
 As of today SDP is widely used in the contexts of Session Initiation Protocol (SIP), Real-time Transport Protocol (RTP), and Real-time Streaming Protocol (RSP).
 
-### ICE: Interactive Connectivity Establishment
+<span class="reference">References: [[3](#ref.3)]</span>
 
-http://www.html5rocks.com/en/tutorials/webrtc/infrastructure/#after-signaling-using-ice-to-cope-with-nats-and-firewalls
+### ICE: Interactive Connectivity Establishment
 
 Signalling requires the initial use of an intermediary server for the exchange of metadata, but upon completion WebRTC attempts to establish a direct P2P connection between the users. This process is carried out through the ICE framework.
 
@@ -110,6 +108,8 @@ The candidate communication routes are rendered in a text-based format, and the 
 - Using TURN as an intermediary (this configuration employs relayed communication rather than P2P)
 
 Out of all posssible candidates, the route with the smallest overhead is chosen.
+
+<span class="reference">References: [[4](#ref.4)]</span>
 
 ### STUN: Session Traversal Utilities for NAT
 
@@ -127,13 +127,13 @@ The server itself is typically not freely accessible, and has to be specifically
 
 <h2 id="3.">3. Browser-based Security Considerations</h2>
 
-From http://www.html5rocks.com/en/tutorials/webrtc/basics/#toc-security :
-
 There are a number of ways in that a real-time communication application may impose security risks, both on the carrier and the end users. Such security risks can be applicable to any application which deals with the transmission of real-time data and media.
 
 WebRTC differs from other RTC apps by providing a strong and reliable infrastructure for even new developers to utilise without compromising on security. We will now proceed to discuss how WebRTC deals with each of these risks in turn.
 
-<h3 id="3.1.">3.1. Browser Trust Model</h2>
+<span class="reference">References: [[5](#ref.5)]</span>
+
+<h3 id="3.1.">3.1. Browser Trust Model</h3>
 
 The WebRTC architecture assumes from a security perspective that network resources exist in a hierarchy of trust. From the user's perspective, the browser (or user client) is basis of all WebRTC security, and acts as their Trusted Computing Base (TCB).
 
@@ -147,9 +147,7 @@ If the user chooses a suitable browser which they know can trust, then all WebRT
 
 In other words, the level of trust provided to the user by WebRTC is directly influenced by the user's trust in the browser.
 
-<h3 id="3.2.">3.2. SOP: Same Origin Policy</h2>
-
-https://tools.ietf.org/html/draft-ietf-rtcweb-security-08#section-3.2 <-- latest version
+<h3 id="3.2.">3.2. SOP: Same Origin Policy</h3>
 
 It is a fundamental aspect of the DOM that all webpage resources are fetched from the page's web server, whenever some or all of the page is loaded. Fetching of resources takes place either when a page is freshly loaded by the browser, or when a script residing on a webpage makes such a request. Such scripts are readily able to make HTTP requests via e.g. the XMLHttpRequest() API (INSERT HYPERLINK WIKIPEDIA), but are not permitted to make such requests to just any server they specify. Rather, requests have to be made to the same "origin" from where the script originated. An "origin" comprises of a URI scheme, hostname, and port number. This overall restrication is termed the "Same Origin Policy" (SOP).
 
@@ -158,6 +156,8 @@ SOP forces scripts to execute in isolated sandboxes specific to their originatin
 Through enforcing execution sandboxes on a per-origin basis, the end user is protected from the misuse of their credentials. You would reasonably expect to safely use a social networking website without a script executing from within an advertisement panel and stealing your login information.
 
 Similarly, the servers of e.g the webpage provider are protected from attacks mounted via the user's browser; If such safeguards did not exist, DoS attacks could otherwise be launched through abusive resource requests.
+
+<span class="reference">References: [[6](#ref.6)]</span>
 
 <h4 id="3.2.1.">3.2.1 Bypassing SOP</h4>
 
@@ -170,6 +170,8 @@ WebSockets is another option allowing similar functionality, but on transparent 
 In both cases, the initial verification stage prevents the arbitrary transfer of data by a script with a different origin.
 
 <h2 id="4.">4. WebRTC Security Considerations</h2>
+
+<span class="reference">References: [[7](#ref.7)]</span>
 
 <h3 id="4.1.">4.1. Installation and Updates</h3>
 
@@ -190,7 +192,7 @@ The browser can access local resources (including camera, mic, files), which lea
 WebRTC combats this by requiring the user to give explicit permission for the camera or microphone to be used (both can be configured indivudally). It is possible to ask the user for one-time or permanent access. It is not possible for a WebRTC application to arbitrarily gain access or operate either device. Furthermore, when either the microphone or camera is being used the client UI is required to expressly show the user that the microphone or camera are being operated. In Chrome, this takes the form of a red dot on any tab accessing a user's media.
 
 ![Figure 3. Chrome UI Indicators](/images/diagram_3_en.png)
-<h5 class="img-title">*Figure 3. Chrome UI Indicators*</h3>
+<h5 class="img-title">*Figure 3. Chrome UI Indicators*</h5>
 
 The philosophy of this security protection is that a user should always be making an informed decision on whether they should permit a call to take place, or to receive a call. In other words, a user must understand:
 - Who or what is requesting access to his media
@@ -209,13 +211,13 @@ Encryption is a mandatory feature of WebRTC, and is enforced on all components, 
 
 <h4 id="4.3.1.">4.3.1. DTLS: Datagram Transport Layer Security</h4>
 
-http://blog.cryptographyengineering.com/2012/01/attack-of-week-datagram-tls.html
-
 WebRTC encrypts information (specifically data channels) using Datagram Transport Layer Security (DTLS). All data sent over RTCDataChannel is secured using DTLS.
 
 DTLS is a standardised protocol which is built into all browsers that support WebRTC, and is one protocol consistently used in web browsers, email, and VoIP platforms to encrypt information. The built-in nature also means that no prior setup is required before use. As with other encryption protocols it is designed to prevent eavesdropping and information tampering. DTLS itself is modelled upon the stream-orientated TLS, a protocol which offers full encryption with asymmetric cryptography methods, data authentication, and message authentication. TLS is the de-facto standard for web encryption, utilised for the purposes of such protocols as HTTPS. TLS is designed for the reliable transport mechanism of TCP, but VoIP apps (and games etc) typically utilise unreliable datagram transports such as UDP.
 
 As DTLS is a derivative of SSL, all data is known to be as secure as using any standard SSL based connection. In fact, WebRTC data can be secured via any standard SSL based connection on the web, allowing WebRTC to offer end-to-end encryption between peers with almost any server arrangement.
+
+<span class="reference">References: [[8](#ref.8)]</span>
 
 <h5 id="4.3.1.1.">4.3.1.1. DTLS over TURN</h5>
 
@@ -229,11 +231,9 @@ Resultantly, the protections put in place through encryption are therefore not c
 
 Basic RTP does not have any built-in security mechanisms, and thus places no protections of the confidentiality of transmitted data. External mechanisms are instead relied on to provide encryption. In fact, the use of unencrypted RTP is explicitly forbidden by the WebRTC specification.
 
-WebRTC utilises SRTP for the encryption of mediastreams, rather than DTLS. This is because SRTP is a lighter-weight option than DTLS. The specification requires that any compliant WebRTC implementation support RTP/SAVPF (which is built on top of RTP/SAVP) [link: http://tools.ietf.org/wg/rtcweb/]. However, the actual SRTP key exchange is inially performed end-to-end with DTLS-SRTP, allowing for the detection of any MiTM attacks.
+WebRTC utilises SRTP for the encryption of mediastreams, rather than DTLS. This is because SRTP is a lighter-weight option than DTLS. The specification requires that any compliant WebRTC implementation support RTP/SAVPF (which is built on top of RTP/SAVP) <span class="reference">[[9](#ref.9)]</span>. However, the actual SRTP key exchange is inially performed end-to-end with DTLS-SRTP, allowing for the detection of any MiTM attacks.
 
 <h4 id="4.3.3.">4.3.3. Establishment of a secure link</h4>
-
-http://www.onsip.com/webrtc-sip-network/webrtc-implementation/webrtc-security
 
 Let us step through the process of establishing a new call on a WebRTC application. In this instance, there will be two parties involved; Alice and Bob. The call procedure is initiated when one party (Alice) calls the other (Bob), and the signalling process exchanges the revelant metadata between both parties.
 
@@ -241,9 +241,9 @@ Once the initial ICE checks have concluded (or specifically, some of them), the 
 
 Once the DTLS handshake completes, the keys are "exported" and used to key SRTP for the media channels. At this stage both parties know that they share a set of secure data and/or media channels with keys which are not known to any malicious third-party.
 
-<h4 id="4.3.4.">4.3.4. DTLS-SRTP vs SDES</h4>
+<span class="reference">References: [[10](#ref.10)]</span>
 
-https://webrtchacks.com/webrtc-must-implement-dtls-srtp-but-must-not-implement-sdes/
+<h4 id="4.3.4.">4.3.4. DTLS-SRTP vs SDES</h4>
 
 In order to negotiate the security parameters for the media traffic session, SRTP needs to interact with a key management protocol. This protocol is not established, offering up a number of possible options for the task. Two such options ares SDES and DTLS-SRTP.
 
@@ -263,17 +263,17 @@ It remains a fact that even today, the majority of RTP traffic in VoIP networks 
 
 DTLS-SRTP on the other hand exchanges keys over the media plane, rather than the signalling plane. The consequence of such a difference is that an SRTP media channel has no need to reveal the secret encryption keys through an SDP message exchange, as is the case with SDES.
 
-The WebRTC specification (http://tools.ietf.org/html/draft-ietf-rtcweb-rtp-usage-07) asserts that WebRTC implementations are required to support DTLS-SRTP for key management. Moreover, it is specified to be the default and preferred scheme, and there is no provision for other key management schemes to be implemented. In other words, other schemes may or may not be supported at all.
+The WebRTC specification <span class="reference">[[9](#ref.9)]</span> asserts that WebRTC implementations are required to support DTLS-SRTP for key management. Moreover, it is specified to be the default and preferred scheme, and there is no provision for other key management schemes to be implemented. In other words, other schemes may or may not be supported at all.
 
 If an offer or "call" is received from a peer advertising support for both DTLS-SRTP and SDES, DTLS-SRTP must be selected - irrespective of whether the signalling is secured or not.
 
 **The Debate**
 
-(http://tools.ietf.org/wg/rtcweb/agenda?item=agenda-87-rtcweb.html)
-
 It is generally accepted that DTLS-SRTP should be the madatory and default option for the encryption of WebRTC media. What is being questioned is whether other mechanisms, namely SDES, should be utilised to provide backward compatability.
 
 From the compatibility persepctive, Google's Chrome browser provides support for both SDES and DTLS-SRTP. Mozilla's Firefox on the other hand only implementes DTLS-SRTP.
+
+<span class="reference">References: [[11](#ref.11)] [[12](#ref.12)]</span>
 
 <h4 id="4.3.5.">4.3.5. A Weakness in SRTP</h4>
 
@@ -288,7 +288,7 @@ It is desirable for a user to be able to verify the identify of their peers. I.e
 Although the signalling server may be able to go some way towards claiming a user's identity, the signalling server itself may not (and for the case of authentication SHOULD not) be trusted. We need to be able to perform authentication of our peers independently from the signalling server. This can be made possible through the use of identity providers.
 
 ![Figure 4. A call with IdP-based identity](/images/diagram_4_en.png)
-<h5 class="img-title">*Figure 4. A call with IdP-based identity*</h3>
+<h5 class="img-title">*Figure 4. A call with IdP-based identity*</h5>
 
 A number of web-based identity providers (IdP) have recently become commonplace on the web, including Facebook Connect, BrowserID (by Mozilla), OAuth (by Twitter). The purpose of these mechanisms is simply to verify your identity to other services/users, on the authority of the identity provider itself. If a user has an account on Facebook then they can then use Facebook Connect, Facebook's IdP to prove to others that the are who they say they are on Facebook. This allows users to tie their authentication on other services to their main account on a "trusted" service. Note that in this case the level of "trust" that an Identity Provider possesses is subjective to the end-point user or service, and is often largely tied to userbase and reputation across the World Wide Web.
 
@@ -297,11 +297,9 @@ The implementations of each IdP may differ due to independent development by dif
 As the web application (calling site) is unrelated to this authentication process, it is important that the browser securely generates the input to the authentication process, and also securely displays the output on the web application. This process must not be able to be falisified or misrepresented by the web application.
 
 ![Figure 5. The operation of an Identity Provider](/images/diagram_5_en.png)
-<h5 class="img-title">*Figure 5. The operation of an Identity Provider*</h3>
+<h5 class="img-title">*Figure 5. The operation of an Identity Provider*</h5>
 
 <h3 id="4.5.">4.5. IP Location Privacy</h3>
-
-https://datatracker.ietf.org/doc/draft-ietf-rtcweb-security/?include_text=1  
 
 One adverse side-affect of using ICE is that a peer can learn one's IP address. As IP addresses are publicly registered with global authorities, they can reveal such details as a given peer's location. This could naturally have negative implications for a peer, which they would wish to avoid.
 
@@ -315,10 +313,9 @@ The second such provision is that any implementation will provide a mechanism fo
 
 Furthermore, there is a mechanism for the calling app to reconfigure an existing call to add non-TURN candidates. Taken together with the previous provision, this allows ICE negotiation to start immediately upon an incoming call notification, thereby reducing delay, but also avoiding disclosing the user's IP address until they have decided to answer. This allows users to completely hide their IP address for the duration of the call.
 
-<h3 id="4.6.">4.6. Signalling Layer</h3>
+<span class="reference">References: [[13](#ref.13)]</span>
 
-http://www.onsip.com/webrtc-sip-network/webrtc-implementation/webrtc-security
-http://searchunifiedcommunications.techtarget.com/feature/Security-in-a-SIP-network-Identifying-network-attacks
+<h3 id="4.6.">4.6. Signalling Layer</h3>
 
 As the signalling protocol is not specified by WebRTC, the mechanism for encryption obviously depends on the signalling protocol chosen. Due to the relatively open nature of signalling security, this report will focus on and briefly explain the of the most common protocol, SIP (Session Initiation Protocol).
 
@@ -326,9 +323,9 @@ SIP is a widely implemented standard used in VoIP communication to setup and tea
 
 Since SIP is sent in clear text, it is trivial for a determined attacker to intercept SIP messages. What happens next is left up to the imagination of the attacker, but it is not hard to imagine an eventuality in that the contents of the message body or header is tampered with. If the attacker intercepts an INVITE message, they may then proceed to change the FROM header to reflect his or her own IP address.
 
-<h4 id="4.6.1.">4.6.1. SIP Vulnerabilities</h4>
+<span class="reference">References: [[10](#ref.10)] [[14](#ref.14)]</span>
 
-http://www.symantec.com/connect/articles/two-attacks-against-voip
+<h4 id="4.6.1.">4.6.1. SIP Vulnerabilities</h4>
 
 SIP is a communications protocol for signalling and controlling multimedia communication sessions and is frequently implemented in VoIP technologies for the purposes of setting up and tearing down phone calls. It can similarly be used in a WebRTC implementation for signalling purposes, as one of a number of possible such options. However, SIP messages are frequently sent in plain text. As this can naturally result in a number of potential attack vectors, we will take a closer examination of this area.
 
@@ -374,10 +371,9 @@ Although it may seem that signalling provides a particularly tempting vantage-po
 
 Although outside of this report's scope, other signalling technologies can similarly use TLS to encrypt their WebSocket or other web traffic. As with all encryption, if the third party does not know the secret encryption key, they are thereby unable to read the plain-text contents of the communication. This helps eliminate the risk of much of the above attack vectors, although it should be noted that the application programmer must specifically implement the encrypted signalling method for this to be applicable.
 
+<span class="reference">References: [[15](#ref.15)]</span>
 
 <h3 id="4.7.">4.7. Additional Security Topics</h3>
-
-https://altanaitelecom.wordpress.com/2014/10/03/security-for-webrtc-applications/
 
 **Viewpoint of the Telecom Network**
 
@@ -388,14 +384,14 @@ For this reason, all data received from untrusted sources (e.g. from consumer/us
 By adopting these two principles, a telecom provider must strive to make all reasonable attempts at protecting the consumer from their own mistakes that may compromise their own systems.
 
 **Cross-site scripting (XSS)**
-
-https://altanaitelecom.wordpress.com/2014/10/03/security-for-webrtc-applications/
     
 Cross-site scripting is a type vulnerability typically found in web applications (such as web browsers through breaches of browser security) that enables attackers to inject client-side script into Web pages viewed by other users. A cross-site scripting vulnerability may be used by attackers to bypass access controls such as the same origin policy.
 
 Their effect may range from a petty nuisance to a significant security risk, depending on the sensitivity of the data handled by the vulnerable site and the nature of any security mitigation implemented by the site’s owner.
 
 As the primary method for accessing WebRTC is expected to be using HTML5 enabled browsers there are specific security considerations concerning their use such as; protecting keys and sensitive data from cross-site scripting or cross-domain attacks, websocket use, iframe security, and other issues. Because the client software will be controlled by the user and because the browser does not, in most cases, run in a protected environment there are additional chances that the WebRTC client will become compromised. This means all data sent to the client could be exposed.
+
+<span class="reference">References: [[16](#ref.16)]</span>
 
 <h2 id="5.">5. Comparison with competing/similar technologies</h2>
 
@@ -449,9 +445,9 @@ For example, before initiating the streaming of any part of the screen, the user
 
 As a final fallback measure, we could venture as far as imagining a situation in that an active call session is compromised by a unauthorised party. If a call is confirmed to be compromised in such a way, it should be within the power of Web Application server rendering the WebRTC capable page to cut off the call.
 
-<h2 id="7.">7. Conclusion</h2>
+<span class="reference">References: [[17](#ref.17)]</span>
 
-https://bloggeek.me/webrtc-most-secure-voip/
+<h2 id="7.">7. Conclusion</h2>
 
 In the modern age of smartphones and mobile devices people are communicating more than ever, and in even more personal ways than we have known before. Encryption in particular has become a big topic in recent years, following the growing awareness of major corporate hacking scandels and widespread government telecommunication eavesdropping. The result of which has been a rapid increase in user distrust of such organisations, and calls for arms in implementing greatly improved security measures. All the end user wants is to know that their personal data is kept private under control.
 
@@ -463,17 +459,60 @@ As a result of this strong focus on secure communication, WebRTC is currently re
 
 In the near future we can expect to see more and more communication services providing greatly increased security to their users. But for now, WebRTC is one of those who are leading the charge.
 
+<span class="reference">References: [[18](#ref.18)]</span>
 
 <h2 id="8.">8. Bibliography</h2>
 
-To Do.
+<span class="reference" id="ref.1">1. [RTCPeerConnection API Reference](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection)</span>.
+<br>developer.mozilla.org. Accessed on 2015-07-28.<br>
 
-https://tools.ietf.org/html/draft-ietf-rtcweb-security-05
+<span class="reference" id="ref.2">2. [Brief Introduction to RTCPeerConnection API](http://chimera.labs.oreilly.com/books/1230000000545/ch18.html#_brief_introduction_to_rtcpeerconnection_api)</span>.
+<br>High Performance Browser Networking. Accessed on 2015-07-28.<br>
 
-https://altanaitelecom.wordpress.com/2014/10/03/security-for-webrtc-applications/ *** <- Look at this tomorrow!
-https://altanaitelecom.wordpress.com/2015/04/24/webrtc-security/
+<span class="reference" id="ref.3">3. [SDP for the WebRTC](http://tools.ietf.org/id/draft-nandakumar-rtcweb-sdp-01.html)</span>.
+<br>tools.ietf.org. Accessed on 2015-07-28.<br>
 
-http://www.visionmobile.com/blog/2012/09/webrtc-a-new-game-changer-disrupting-telcos-and-otts/
-https://www.pkcsecurity.com/blog
+<span class="reference" id="ref.4">4. [After signaling: using ICE to cope with NATs and firewalls](http://www.html5rocks.com/en/tutorials/webrtc/infrastructure/#after-signaling-using-ice-to-cope-with-nats-and-firewalls)</span>.
+<br>html5rocks.com. Accessed on 2015-07-28.<br>
 
-http://chimera.labs.oreilly.com/books/1230000000545/ch18.html#_brief_introduction_to_rtcpeerconnection_api
+<span class="reference" id="ref.5">5. [Getting Started with WebRTC - Security](http://www.html5rocks.com/en/tutorials/webrtc/basics/#toc-security)</span>.
+<br>html5rocks.com. Accessed on 2015-07-28.<br>
+
+<span class="reference" id="ref.6">6. [WebRTC Security - Same Origin Policy](https://tools.ietf.org/html/draft-ietf-rtcweb-security-08#section-3.2)</span>.
+<br>tools.ietf.org. Accessed on 2015-07-28.<br>
+
+<span class="reference" id="ref.7">7. [Security Considerations for WebRTC](https://tools.ietf.org/html/draft-ietf-rtcweb-security-05)</span>.
+<br>tools.ietf.org. Accessed on 2015-07-28.<br>
+
+<span class="reference" id="ref.8">8. [Attack of the week: Datagram TLS](http://blog.cryptographyengineering.com/2012/01/attack-of-week-datagram-tls.html)</span>. 
+<br>blog.cryptographyengineering.com. Accessed on 2015-07-28.<br>
+
+<span class="reference" id="ref.9">9. [Web Real-Time Communication (WebRTC): Media Transport and Use of RTP](https://tools.ietf.org/html/draft-ietf-rtcweb-rtp-usage-25)</span>. 
+<br>tools.ietf.org. Accessed on 2015-07-28.<br>
+
+<span class="reference" id="ref.10">10. [The Foundation of WebRTC Security](http://www.onsip.com/webrtc-sip-network/webrtc-implementation/webrtc-security)</span>.
+<br>onsip.com. Accessed on 2015-07-28.<br>
+
+<span class="reference" id="ref.11">11. [WebRTC MUST implement DTLS-SRTP but… MUST NOT implement SDES?](https://webrtchacks.com/webrtc-must-implement-dtls-srtp-but-must-not-implement-sdes/)</span>.
+<br>webrtchacks.com. Accessed on 2015-07-28.<br>
+
+<span class="reference" id="ref.12">12. [IETF-87 rtcweb agenda](http://tools.ietf.org/wg/rtcweb/agenda?item=agenda-87-rtcweb.html)</span>.
+<br>tools.ietf.org. Accessed on 2015-07-28.<br>
+
+<span class="reference" id="ref.13">13. [Security Considerations for WebRTC](https://www.ietf.org/id/draft-ietf-rtcweb-security-08.txt)</span>.
+<br>www.ietf.org. Accessed on 2015-07-28.<br>
+
+<span class="reference" id="ref.14">14. [Security in a SIP network: Identifying network attacks](http://searchunifiedcommunications.techtarget.com/feature/Security-in-a-SIP-network-Identifying-network-attacks)</span>.
+<br>searchunifiedcommunications.techtarget.com. Accessed on 2015-07-28.<br>
+
+<span class="reference" id="ref.15">15. [Two attacks against VoIP](http://www.symantec.com/connect/articles/two-attacks-against-voip)</span>.
+<br>symantec.com. Accessed on 2015-07-28.<br>
+
+<span class="reference" id="ref.16">16. [Security for WebRTC applications](https://altanaitelecom.wordpress.com/2014/10/03/security-for-webrtc-applications/)</span>.
+<br>altanaitelecom.wordpress.com. Accessed on 2015-07-28.<br>
+
+<span class="reference" id="ref.17">17. [WebRTC Security](https://altanaitelecom.wordpress.com/2015/04/24/webrtc-security/)</span>.
+<br>altanaitelecom.wordpress.com. Accessed on 2015-07-28.<br>
+
+<span class="reference" id="ref.18">18. [Why WebRTC is the Most Secure VoIP Solution](https://bloggeek.me/webrtc-most-secure-voip/)</span>.
+<br>bloggeek.me. Accessed on 2015-07-28.<br>
