@@ -3,6 +3,7 @@ layout: page
 title: A Study of WebRTC Security
 ---
 
+
 ## Abstract
 
 Web Real-Time Communication (abbreviated as WebRTC) is a recent trend in web application technology, which promises the ability to enable realtime communication in the browser without the need for plug-ins or other requirements.
@@ -115,7 +116,7 @@ Out of all posssible candidates, the route with the smallest overhead is chosen.
 
 In order to perform P2P communication, both parties necessarily require at least the knowledge of their peer's IP address and the assigned UDP port. As a result, a certain amount of information exchange is necessary before WebRTC communication can be established.
 
-A STUN server is used by each peer to determine their public IP address, and is referenced by the ICE framework during connection establishment. STUN servers are typically publically accessible, and can be used freely by WebRTC applications. 
+A STUN server is used by each peer to determine their public IP address, and is referenced by the ICE framework during connection establishment. STUN servers are typically publically accessible, and can be used freely by WebRTC applications.
 
 ### TURN: Traversal Using Relays around NAT
 
@@ -221,9 +222,9 @@ As DTLS is a derivative of SSL, all data is known to be as secure as using any s
 
 <h5 id="4.3.1.1.">4.3.1.1. DTLS over TURN</h5>
 
-The default option for all WebRTC communication is direct P2P communication between two browsers, aided with signalling servers during the setup phase. P2P encryption is relatively easy to envisage and setup, but in the case of failure WebRTC setup falls back to communication via a TURN server (if available). During TURN communication the media can suffer a loss of quality and increased latency, but it allows an "if all else fails" scenario to permit WebRTC application to work even under challenging circumstances. We must also consider encrypted communication under TURN's alternative communication structure. 
+The default option for all WebRTC communication is direct P2P communication between two browsers, aided with signalling servers during the setup phase. P2P encryption is relatively easy to envisage and setup, but in the case of failure WebRTC setup falls back to communication via a TURN server (if available). During TURN communication the media can suffer a loss of quality and increased latency, but it allows an "if all else fails" scenario to permit WebRTC application to work even under challenging circumstances. We must also consider encrypted communication under TURN's alternative communication structure.
 
-It is known that regardless of communication method, the sent data is encrypted at the end points. A TURN server's purpose is simply the relay of WebRTC data between parties in a call, and will only parse the UDP layer of a WebRTC packet for routing purposes. Servers will not decode the application data layer in order to route packets, and therefore we know that they do not (and can not) touch the DTLS encryption. 
+It is known that regardless of communication method, the sent data is encrypted at the end points. A TURN server's purpose is simply the relay of WebRTC data between parties in a call, and will only parse the UDP layer of a WebRTC packet for routing purposes. Servers will not decode the application data layer in order to route packets, and therefore we know that they do not (and can not) touch the DTLS encryption.
 
 Resultantly, the protections put in place through encryption are therefore not compromised during WebRTC communication over TURN, and the server cannot understand or modify information that peers send to each other.
 
@@ -356,7 +357,7 @@ This attack can be suppressed by implementing SIPS (SIP over TLS) and authentica
 **Other possible attacks**
 
 - MiTM attack
-  - If the attacker is able to intercept the initial SIP messages, he or she may then perform a MiTM attack. 
+  - If the attacker is able to intercept the initial SIP messages, he or she may then perform a MiTM attack.
 
 - Replay attack
  - Captured packets could be replayed to the server by a malicious party, causing the server to call the original destination of a call. In other words, this would possibly take the form of a second unsolicited call request, identical to one the party had already received. Although a nuisance, the attacker themself would not be party of the call, as their IP information would not be included in the signalling packets.
@@ -384,7 +385,7 @@ For this reason, all data received from untrusted sources (e.g. from consumer/us
 By adopting these two principles, a telecom provider must strive to make all reasonable attempts at protecting the consumer from their own mistakes that may compromise their own systems.
 
 **Cross-site scripting (XSS)**
-    
+
 Cross-site scripting is a type vulnerability typically found in web applications (such as web browsers through breaches of browser security) that enables attackers to inject client-side script into Web pages viewed by other users. A cross-site scripting vulnerability may be used by attackers to bypass access controls such as the same origin policy.
 
 Their effect may range from a petty nuisance to a significant security risk, depending on the sensitivity of the data handled by the vulnerable site and the nature of any security mitigation implemented by the site’s owner.
@@ -414,7 +415,7 @@ WebRTC is built to be secure. However more than just bindly relying on the under
 
 **Secure Signalling**
 
-As mentioned previously, WebRTC does not impose any constraints on the signalling process, rather leaving the developer to decide upon their own preferred method. Although this allows for a degree of flexibility that can have the WebRTC implementation tailored to the needs of the application, there can be risks associated with certain signalling protocols. 
+As mentioned previously, WebRTC does not impose any constraints on the signalling process, rather leaving the developer to decide upon their own preferred method. Although this allows for a degree of flexibility that can have the WebRTC implementation tailored to the needs of the application, there can be risks associated with certain signalling protocols.
 
 It is advisable to implement a signalling protocol that provides additional security, such as encryption of signalling traffic. By default a signalling process may not incorporate any encryption, which can leave the contents of all exchanged signalling messages open to eavesdropping. Applications with a focus upon security/confidentiality should therefore ensure that their signalling layer is implemented over a secure protocol such as SIPS, OpenSIP, HTTPS or WSS.
 
@@ -485,10 +486,10 @@ In the near future we can expect to see more and more communication services pro
 <span class="reference" id="ref.7">7. [Security Considerations for WebRTC](https://tools.ietf.org/html/draft-ietf-rtcweb-security-05)</span>.
 <br>tools.ietf.org. Accessed on 2015-07-28.<br>
 
-<span class="reference" id="ref.8">8. [Attack of the week: Datagram TLS](http://blog.cryptographyengineering.com/2012/01/attack-of-week-datagram-tls.html)</span>. 
+<span class="reference" id="ref.8">8. [Attack of the week: Datagram TLS](http://blog.cryptographyengineering.com/2012/01/attack-of-week-datagram-tls.html)</span>.
 <br>blog.cryptographyengineering.com. Accessed on 2015-07-28.<br>
 
-<span class="reference" id="ref.9">9. [Web Real-Time Communication (WebRTC): Media Transport and Use of RTP](https://tools.ietf.org/html/draft-ietf-rtcweb-rtp-usage-25)</span>. 
+<span class="reference" id="ref.9">9. [Web Real-Time Communication (WebRTC): Media Transport and Use of RTP](https://tools.ietf.org/html/draft-ietf-rtcweb-rtp-usage-25)</span>.
 <br>tools.ietf.org. Accessed on 2015-07-28.<br>
 
 <span class="reference" id="ref.10">10. [The Foundation of WebRTC Security](http://www.onsip.com/webrtc-sip-network/webrtc-implementation/webrtc-security)</span>.
