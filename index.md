@@ -120,7 +120,7 @@ A STUN server is used by each peer to determine their public IP address, and is 
 
 ### TURN: Traversal Using Relays around NAT
 
-In the eventuality that establishing a P2P communication fails, a fallback option can be provided via a TURN server. By relaying traffic between peers the WebRTC communication can ensured, but can suffer degregations in media quality and latency.
+In the eventuality that establishing a P2P communication fails, a fallback option can be provided via a TURN server. By relaying traffic between peers the WebRTC communication can be ensured, but can suffer degregations in media quality and latency.
 
 TURN servers can ensure high success in setting up calls, regardless of the end-user's environments. As the data is sent through an intermediary server, server bandwidth is also consumed. If many calls are simulataneously routed through the server, the bandwidth was also become considerable in size.
 
