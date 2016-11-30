@@ -68,7 +68,7 @@ RTCPeerConnection has two specific traits:
 
 The RTCDataChannel is the second main API offered as part of WebRTC, and represents the main communication channel through which the exchange of arbitrary application data occurs between peers. In other words, it is used to transfer data directly from one peer to another.
 
-Although a number of alternative options for communication channels exist (e.g. WebScoket, Server Sent Events), however these alternatives were designed for communication with a server rather than a directly-connected peer. RTCDataChannel resembles the popular WebSocket, but instead takes a peer-to-peer format while offering customisable delivery properties of the underlying transport.
+Although a number of alternative options for communication channels exist (e.g. WebSocket, Server Sent Events), however these alternatives were designed for communication with a server rather than a directly-connected peer. RTCDataChannel resembles the popular WebSocket, but instead takes a peer-to-peer format while offering customisable delivery properties of the underlying transport.
 
 <h3 id="2.1.">2.1. Underlying Technologies</h3>
 
