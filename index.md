@@ -122,7 +122,7 @@ A STUN server is used by each peer to determine their public IP address, and is 
 
 In the eventuality that establishing a P2P communication fails, a fallback option can be provided via a TURN server. By relaying traffic between peers the WebRTC communication can be ensured, but can suffer degradations in media quality and latency.
 
-TURN servers can ensure high success in setting up calls, regardless of the end-user's environments. As the data is sent through an intermediary server, server bandwidth is also consumed. If many calls are simultaneously routed through the server, the bandwidth was also become considerable in size.
+TURN servers can ensure high success in setting up calls, regardless of the end-user's environments. As the data is sent through an intermediary server, server bandwidth is also consumed. If many calls are simultaneously routed through the server, the bandwidth could also become considerable in size.
 
 The server itself is typically not freely accessible, and has to be specifically provided (or rented) by the application provider.
 
@@ -222,7 +222,7 @@ As DTLS is a derivative of SSL, all data is known to be as secure as using any s
 
 <h5 id="4.3.1.1.">4.3.1.1. DTLS over TURN</h5>
 
-The default option for all WebRTC communication is direct P2P communication between two browsers, aided with signalling servers during the setup phase. P2P encryption is relatively easy to envisage and setup, but in the case of failure WebRTC setup falls back to communication via a TURN server (if available). During TURN communication the media can suffer a loss of quality and increased latency, but it allows an "if all else fails" scenario to permit WebRTC application to work even under challenging circumstances. We must also consider encrypted communication under TURN's alternative communication structure.
+The default option for all WebRTC communication is direct P2P communication between two browsers, aided with signalling servers during the setup phase. P2P communication is relatively easy to envisage and setup, but in the case of failure WebRTC setup falls back to communication via a TURN server (if available). During TURN communication the media can suffer a loss of quality and increased latency, but it allows an "if all else fails" scenario to permit WebRTC application to work even under challenging circumstances. We must also consider encrypted communication under TURN's alternative communication structure.
 
 It is known that regardless of communication method, the sent data is encrypted at the end points. A TURN server's purpose is simply the relay of WebRTC data between parties in a call, and will only parse the UDP layer of a WebRTC packet for routing purposes. Servers will not decode the application data layer in order to route packets, and therefore we know that they do not (and cannot) touch the DTLS encryption.
 
